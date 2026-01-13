@@ -1,0 +1,4065 @@
+{
+    "panw_ngfw_hipmatch_raw": {
+        "vsys": {
+            "type": "string"
+        },
+        "source_user_info": {
+            "type": "string"
+        },
+        "source_device_host": {
+            "type": "string"
+        },
+        "endpoint_serial_number": {
+            "type": "string"
+        },
+        "source_device_mac": {
+            "type": "string"
+        },
+        "_reporting_device_name": {
+            "type": "string"
+        },
+        "uuid": {
+            "type": "string"
+        },
+        "_reporting_device_ip": {
+            "type": "string"
+        },
+        "dest_user_info": {
+            "type": "string"
+        },
+        "source_device_os": {
+            "type": "string"
+        },
+        "event_time": {
+            "type": "datetime"
+        },
+        "__tz": {
+            "type": "string"
+        },
+        "time_generated": {
+            "type": "datetime"
+        },
+        "flags": {
+            "type": "string"
+        },
+        "partial_hash": {
+            "type": "string"
+        },
+        "source_device_model": {
+            "type": "string"
+        },
+        "hip_match_name": {
+            "type": "string"
+        },
+        "log_source_tz_offset": {
+            "type": "numeric"
+        },
+        "admin_user_info": {
+            "type": "string"
+        },
+        "dg_hier_level_4": {
+            "type": "string"
+        },
+        "is_prisma_mobile": {
+            "type": "boolean"
+        },
+        "source": {
+            "type": "string"
+        },
+        "config_version": {
+            "type": "string"
+        },
+        "is_forwarded": {
+            "type": "boolean"
+        },
+        "log_type": {
+            "type": "string"
+        },
+        "sequence_no": {
+            "type": "numeric"
+        },
+        "time_generated_high_res": {
+            "type": "string"
+        },
+        "log_source_name": {
+            "type": "string"
+        },
+        "vsys_name": {
+            "type": "string"
+        },
+        "source_device_profile": {
+            "type": "string"
+        },
+        "timestamp_device_identification": {
+            "type": "string"
+        },
+        "is_exported": {
+            "type": "boolean"
+        },
+        "source_user": {
+            "type": "string"
+        },
+        "source_ip": {
+            "type": "string"
+        },
+        "hip_match_type": {
+            "type": "string"
+        },
+        "endpoint_events": {
+            "type": "string"
+        },
+        "outbound_if_details": {
+            "type": "string"
+        },
+        "source_device_osfamily": {
+            "type": "string"
+        },
+        "action_flags": {
+            "type": "string"
+        },
+        "log_source": {
+            "type": "string"
+        },
+        "dg_hier_level_2": {
+            "type": "string"
+        },
+        "endpoint_os_type": {
+            "type": "string"
+        },
+        "__timestamp": {
+            "type": "string"
+        },
+        "characteristics_of_app": {
+            "type": "string"
+        },
+        "source_user_info_uuid": {
+            "type": "numeric"
+        },
+        "host_id": {
+            "type": "string"
+        },
+        "dg_hier_level_1": {
+            "type": "string"
+        },
+        "threat_name_firewall": {
+            "type": "string"
+        },
+        "traffic_flags": {
+            "type": "string"
+        },
+        "_time": {
+            "type": "datetime"
+        },
+        "dg_hier_level_3": {
+            "type": "string"
+        },
+        "is_prisma_branch": {
+            "type": "boolean"
+        },
+        "vsys_id": {
+            "type": "numeric"
+        },
+        "domain_edl": {
+            "type": "string"
+        },
+        "log_time": {
+            "type": "datetime"
+        },
+        "source_user_info_domain": {
+            "type": "string"
+        },
+        "source_ip_v6": {
+            "type": "string"
+        },
+        "authenticated_user_info": {
+            "type": "string"
+        },
+        "source_device_osversion": {
+            "type": "string"
+        },
+        "source_user_info_name": {
+            "type": "string"
+        },
+        "log_source_id": {
+            "type": "string"
+        },
+        "count_of_repeats": {
+            "type": "numeric"
+        },
+        "sub_type": {
+            "type": "string"
+        },
+        "is_dup_log": {
+            "type": "boolean"
+        },
+        "inbound_if_details": {
+            "type": "string"
+        },
+        "source_device_class": {
+            "type": "string"
+        },
+        "endpoint_device_name": {
+            "type": "string"
+        },
+        "source_device_vendor": {
+            "type": "string"
+        },
+        "source_device_category": {
+            "type": "string"
+        }
+    },
+    "panw_ngfw_threat_raw": {
+        "dest_location": {
+            "type": "string"
+        },
+        "vsys": {
+            "type": "string"
+        },
+        "dest_uuid": {
+            "type": "string"
+        },
+        "endpoint_serial_number": {
+            "type": "string"
+        },
+        "source_device_mac": {
+            "type": "string"
+        },
+        "dest_user_info_domain": {
+            "type": "string"
+        },
+        "source_edl": {
+            "type": "string"
+        },
+        "parent_session_id": {
+            "type": "numeric"
+        },
+        "tunnel": {
+            "type": "string"
+        },
+        "sanctioned_state_of_app": {
+            "type": "boolean"
+        },
+        "is_url_denied": {
+            "type": "boolean"
+        },
+        "dest_user_info": {
+            "type": "string"
+        },
+        "source_device_os": {
+            "type": "string"
+        },
+        "is_sym_return": {
+            "type": "boolean"
+        },
+        "sig_flags": {
+            "type": "numeric"
+        },
+        "__tz": {
+            "type": "string"
+        },
+        "time_generated": {
+            "type": "datetime"
+        },
+        "partial_hash": {
+            "type": "numeric"
+        },
+        "source_device_model": {
+            "type": "string"
+        },
+        "nat_source_port": {
+            "type": "numeric"
+        },
+        "direction_of_attack": {
+            "type": "string"
+        },
+        "is_captive_portal": {
+            "type": "boolean"
+        },
+        "threat_id": {
+            "type": "numeric"
+        },
+        "log_source_tz_offset": {
+            "type": "numeric"
+        },
+        "is_tunnel_inspected": {
+            "type": "boolean"
+        },
+        "is_prisma_mobile": {
+            "type": "boolean"
+        },
+        "config_version": {
+            "type": "string"
+        },
+        "log_type": {
+            "type": "string"
+        },
+        "cloud_hostname": {
+            "type": "string"
+        },
+        "sequence_no": {
+            "type": "numeric"
+        },
+        "dest_ip": {
+            "type": "string"
+        },
+        "dest_dynamic_address_group": {
+            "type": "string"
+        },
+        "log_source_name": {
+            "type": "string"
+        },
+        "is_client_to_server": {
+            "type": "boolean"
+        },
+        "source_device_profile": {
+            "type": "string"
+        },
+        "tunnelid_imsi": {
+            "type": "numeric"
+        },
+        "source_ip": {
+            "type": "string"
+        },
+        "endpoint_events": {
+            "type": "string"
+        },
+        "tunneled_app": {
+            "type": "string"
+        },
+        "outbound_if_details": {
+            "type": "string"
+        },
+        "risk_of_app": {
+            "type": "string"
+        },
+        "inbound_if_details_port": {
+            "type": "numeric"
+        },
+        "is_proxy": {
+            "type": "boolean"
+        },
+        "recipient_of_virus": {
+            "type": "string"
+        },
+        "inbound_if_details_unit": {
+            "type": "numeric"
+        },
+        "source_dynamic_address_group": {
+            "type": "string"
+        },
+        "report_id": {
+            "type": "numeric"
+        },
+        "is_server_to_client": {
+            "type": "boolean"
+        },
+        "is_container": {
+            "type": "boolean"
+        },
+        "outbound_if_details_unit": {
+            "type": "numeric"
+        },
+        "pod_name": {
+            "type": "string"
+        },
+        "dest_device_osfamily": {
+            "type": "string"
+        },
+        "characteristics_of_app": {
+            "type": "string"
+        },
+        "threat_name_firewall": {
+            "type": "string"
+        },
+        "traffic_flags": {
+            "type": "string"
+        },
+        "is_transaction": {
+            "type": "boolean"
+        },
+        "action": {
+            "type": "string"
+        },
+        "file_sha_256": {
+            "type": "string"
+        },
+        "is_decrypted": {
+            "type": "boolean"
+        },
+        "is_prisma_branch": {
+            "type": "boolean"
+        },
+        "vsys_id": {
+            "type": "numeric"
+        },
+        "threat_name": {
+            "type": "string"
+        },
+        "nat_source": {
+            "type": "string"
+        },
+        "dynusergroup_name": {
+            "type": "string"
+        },
+        "dest_device_vendor": {
+            "type": "string"
+        },
+        "xff_ip": {
+            "type": "string"
+        },
+        "vendor_severity": {
+            "type": "string"
+        },
+        "session_id": {
+            "type": "numeric"
+        },
+        "url_domain": {
+            "type": "string"
+        },
+        "technology_of_app": {
+            "type": "string"
+        },
+        "log_time": {
+            "type": "datetime"
+        },
+        "source_user_info_domain": {
+            "type": "string"
+        },
+        "authenticated_user_info": {
+            "type": "string"
+        },
+        "source_device_osversion": {
+            "type": "string"
+        },
+        "http2_connection": {
+            "type": "numeric"
+        },
+        "nssai_network_slice_type": {
+            "type": "string"
+        },
+        "app_category": {
+            "type": "string"
+        },
+        "log_source_id": {
+            "type": "string"
+        },
+        "count_of_repeats": {
+            "type": "numeric"
+        },
+        "sub_type": {
+            "type": "string"
+        },
+        "is_dup_log": {
+            "type": "boolean"
+        },
+        "source_device_class": {
+            "type": "string"
+        },
+        "is_packet_capture": {
+            "type": "boolean"
+        },
+        "is_exported": {
+            "type": "boolean"
+        },
+        "dest_device_mac": {
+            "type": "string"
+        },
+        "parent_start_time": {
+            "type": "string"
+        },
+        "source_device_category": {
+            "type": "string"
+        },
+        "source_user_info": {
+            "type": "string"
+        },
+        "source_device_host": {
+            "type": "string"
+        },
+        "_reporting_device_name": {
+            "type": "string"
+        },
+        "app": {
+            "type": "string"
+        },
+        "to_zone": {
+            "type": "string"
+        },
+        "subject_of_email": {
+            "type": "string"
+        },
+        "_reporting_device_ip": {
+            "type": "string"
+        },
+        "nat_dest_port": {
+            "type": "numeric"
+        },
+        "non_standard_dest_port": {
+            "type": "numeric"
+        },
+        "event_time": {
+            "type": "datetime"
+        },
+        "cloud": {
+            "type": "string"
+        },
+        "source_device_vendor": {
+            "type": "string"
+        },
+        "flags": {
+            "type": "string"
+        },
+        "protocol": {
+            "type": "string"
+        },
+        "admin_user_info": {
+            "type": "string"
+        },
+        "dg_hier_level_4": {
+            "type": "string"
+        },
+        "is_ipv6": {
+            "type": "boolean"
+        },
+        "dest_user_info_name": {
+            "type": "string"
+        },
+        "is_forwarded": {
+            "type": "boolean"
+        },
+        "rule_matched": {
+            "type": "string"
+        },
+        "verdict": {
+            "type": "string"
+        },
+        "time_generated_high_res": {
+            "type": "string"
+        },
+        "vsys_name": {
+            "type": "string"
+        },
+        "dest_device_class": {
+            "type": "string"
+        },
+        "source_port": {
+            "type": "numeric"
+        },
+        "source_user": {
+            "type": "string"
+        },
+        "content_version": {
+            "type": "string"
+        },
+        "is_decrypt_mirror": {
+            "type": "boolean"
+        },
+        "app_sub_category": {
+            "type": "string"
+        },
+        "dest_device_host": {
+            "type": "string"
+        },
+        "is_source_x_fwded": {
+            "type": "boolean"
+        },
+        "threat_category": {
+            "type": "string"
+        },
+        "outbound_if_details_slot": {
+            "type": "numeric"
+        },
+        "monitor_tag_imei": {
+            "type": "string"
+        },
+        "is_phishing": {
+            "type": "boolean"
+        },
+        "dest_device_os": {
+            "type": "string"
+        },
+        "is_non_std_dest_port": {
+            "type": "boolean"
+        },
+        "is_encrypted": {
+            "type": "boolean"
+        },
+        "source_device_osfamily": {
+            "type": "string"
+        },
+        "url_category": {
+            "type": "string"
+        },
+        "is_saas_app": {
+            "type": "boolean"
+        },
+        "is_recon_excluded": {
+            "type": "boolean"
+        },
+        "action_flags": {
+            "type": "string"
+        },
+        "from_zone": {
+            "type": "string"
+        },
+        "log_source": {
+            "type": "string"
+        },
+        "dg_hier_level_2": {
+            "type": "string"
+        },
+        "severity": {
+            "type": "string"
+        },
+        "container_of_app": {
+            "type": "string"
+        },
+        "is_nat": {
+            "type": "boolean"
+        },
+        "dest_device_profile": {
+            "type": "string"
+        },
+        "__timestamp": {
+            "type": "string"
+        },
+        "payload_protocol_id": {
+            "type": "numeric"
+        },
+        "inbound_if": {
+            "type": "string"
+        },
+        "dest_user_info_uuid": {
+            "type": "numeric"
+        },
+        "inbound_if_details_type": {
+            "type": "string"
+        },
+        "source_location": {
+            "type": "string"
+        },
+        "source_user_info_uuid": {
+            "type": "numeric"
+        },
+        "host_id": {
+            "type": "string"
+        },
+        "dg_hier_level_1": {
+            "type": "string"
+        },
+        "is_mptcp_on": {
+            "type": "boolean"
+        },
+        "pcap_id": {
+            "type": "numeric"
+        },
+        "pcap": {
+            "type": "string"
+        },
+        "dest_device_model": {
+            "type": "string"
+        },
+        "file_type": {
+            "type": "string"
+        },
+        "_time": {
+            "type": "datetime"
+        },
+        "dest_device_category": {
+            "type": "string"
+        },
+        "sender_of_virus": {
+            "type": "string"
+        },
+        "dg_hier_level_3": {
+            "type": "string"
+        },
+        "rule_matched_uuid": {
+            "type": "string"
+        },
+        "pod_namespace": {
+            "type": "string"
+        },
+        "domain_edl": {
+            "type": "string"
+        },
+        "dest_device_osversion": {
+            "type": "string"
+        },
+        "url_idx": {
+            "type": "numeric"
+        },
+        "dest_edl": {
+            "type": "string"
+        },
+        "http_method": {
+            "type": "string"
+        },
+        "dest_user": {
+            "type": "string"
+        },
+        "inbound_if_details_slot": {
+            "type": "numeric"
+        },
+        "source_uuid": {
+            "type": "string"
+        },
+        "file_name": {
+            "type": "string"
+        },
+        "log_set": {
+            "type": "string"
+        },
+        "outbound_if": {
+            "type": "string"
+        },
+        "container_id": {
+            "type": "string"
+        },
+        "dest_port": {
+            "type": "numeric"
+        },
+        "source_user_info_name": {
+            "type": "string"
+        },
+        "outbound_if_details_type": {
+            "type": "string"
+        },
+        "outbound_if_details_port": {
+            "type": "numeric"
+        },
+        "inbound_if_details": {
+            "type": "string"
+        },
+        "users": {
+            "type": "string"
+        },
+        "nat_dest": {
+            "type": "string"
+        }
+    },
+    "panw_ngfw_traffic_raw": {
+        "dest_location": {
+            "type": "string"
+        },
+        "vsys": {
+            "type": "string"
+        },
+        "dest_uuid": {
+            "type": "string"
+        },
+        "endpoint_serial_number": {
+            "type": "string"
+        },
+        "source_device_mac": {
+            "type": "string"
+        },
+        "dest_user_info_domain": {
+            "type": "string"
+        },
+        "source_edl": {
+            "type": "string"
+        },
+        "parent_session_id": {
+            "type": "numeric"
+        },
+        "is_decryption_log": {
+            "type": "boolean"
+        },
+        "tunnel": {
+            "type": "string"
+        },
+        "sanctioned_state_of_app": {
+            "type": "boolean"
+        },
+        "is_url_denied": {
+            "type": "boolean"
+        },
+        "nssai_network_slice_differentiator": {
+            "type": "string"
+        },
+        "dest_user_info": {
+            "type": "string"
+        },
+        "source_device_os": {
+            "type": "string"
+        },
+        "is_sym_return": {
+            "type": "boolean"
+        },
+        "__tz": {
+            "type": "string"
+        },
+        "time_generated": {
+            "type": "datetime"
+        },
+        "partial_hash": {
+            "type": "string"
+        },
+        "source_device_model": {
+            "type": "string"
+        },
+        "nat_source_port": {
+            "type": "numeric"
+        },
+        "is_captive_portal": {
+            "type": "boolean"
+        },
+        "bytes_received": {
+            "type": "numeric"
+        },
+        "log_source_tz_offset": {
+            "type": "numeric"
+        },
+        "is_tunnel_inspected": {
+            "type": "boolean"
+        },
+        "is_prisma_mobile": {
+            "type": "boolean"
+        },
+        "config_version": {
+            "type": "string"
+        },
+        "log_type": {
+            "type": "string"
+        },
+        "sdwan_cluster_type": {
+            "type": "string"
+        },
+        "sequence_no": {
+            "type": "numeric"
+        },
+        "dest_ip": {
+            "type": "string"
+        },
+        "dest_dynamic_address_group": {
+            "type": "string"
+        },
+        "log_source_name": {
+            "type": "string"
+        },
+        "is_client_to_server": {
+            "type": "boolean"
+        },
+        "source_device_profile": {
+            "type": "string"
+        },
+        "tunnelid_imsi": {
+            "type": "numeric"
+        },
+        "link_change_count": {
+            "type": "numeric"
+        },
+        "source_ip": {
+            "type": "string"
+        },
+        "sdwan_device_type": {
+            "type": "string"
+        },
+        "endpoint_events": {
+            "type": "string"
+        },
+        "tunneled_app": {
+            "type": "string"
+        },
+        "sdwan_site": {
+            "type": "string"
+        },
+        "outbound_if_details": {
+            "type": "string"
+        },
+        "risk_of_app": {
+            "type": "string"
+        },
+        "inbound_if_details_port": {
+            "type": "numeric"
+        },
+        "is_proxy": {
+            "type": "boolean"
+        },
+        "inbound_if_details_unit": {
+            "type": "numeric"
+        },
+        "source_dynamic_address_group": {
+            "type": "string"
+        },
+        "is_server_to_client": {
+            "type": "boolean"
+        },
+        "is_container": {
+            "type": "boolean"
+        },
+        "outbound_if_details_unit": {
+            "type": "numeric"
+        },
+        "pod_name": {
+            "type": "string"
+        },
+        "dest_device_osfamily": {
+            "type": "string"
+        },
+        "characteristics_of_app": {
+            "type": "string"
+        },
+        "threat_name_firewall": {
+            "type": "string"
+        },
+        "traffic_flags": {
+            "type": "string"
+        },
+        "is_transaction": {
+            "type": "boolean"
+        },
+        "action": {
+            "type": "string"
+        },
+        "is_decrypted": {
+            "type": "boolean"
+        },
+        "is_prisma_branch": {
+            "type": "boolean"
+        },
+        "vsys_id": {
+            "type": "numeric"
+        },
+        "nat_source": {
+            "type": "string"
+        },
+        "dynusergroup_name": {
+            "type": "string"
+        },
+        "dest_device_vendor": {
+            "type": "string"
+        },
+        "xff_ip": {
+            "type": "string"
+        },
+        "session_id": {
+            "type": "numeric"
+        },
+        "technology_of_app": {
+            "type": "string"
+        },
+        "bytes_total": {
+            "type": "numeric"
+        },
+        "log_time": {
+            "type": "datetime"
+        },
+        "source_user_info_domain": {
+            "type": "string"
+        },
+        "authenticated_user_info": {
+            "type": "string"
+        },
+        "source_device_osversion": {
+            "type": "string"
+        },
+        "http2_connection": {
+            "type": "numeric"
+        },
+        "nssai_network_slice_type": {
+            "type": "string"
+        },
+        "app_category": {
+            "type": "string"
+        },
+        "log_source_id": {
+            "type": "string"
+        },
+        "count_of_repeats": {
+            "type": "numeric"
+        },
+        "sub_type": {
+            "type": "string"
+        },
+        "is_dup_log": {
+            "type": "boolean"
+        },
+        "source_device_class": {
+            "type": "string"
+        },
+        "is_packet_capture": {
+            "type": "boolean"
+        },
+        "is_exported": {
+            "type": "boolean"
+        },
+        "dest_device_mac": {
+            "type": "string"
+        },
+        "bytes_sent": {
+            "type": "numeric"
+        },
+        "parent_start_time": {
+            "type": "string"
+        },
+        "source_device_category": {
+            "type": "string"
+        },
+        "source_user_info": {
+            "type": "string"
+        },
+        "source_device_host": {
+            "type": "string"
+        },
+        "_reporting_device_name": {
+            "type": "string"
+        },
+        "app": {
+            "type": "string"
+        },
+        "to_zone": {
+            "type": "string"
+        },
+        "_reporting_device_ip": {
+            "type": "string"
+        },
+        "packets_total": {
+            "type": "numeric"
+        },
+        "nat_dest_port": {
+            "type": "numeric"
+        },
+        "non_standard_dest_port": {
+            "type": "numeric"
+        },
+        "event_time": {
+            "type": "datetime"
+        },
+        "sdwan_FEC_ratio": {
+            "type": "float"
+        },
+        "source_device_vendor": {
+            "type": "string"
+        },
+        "flags": {
+            "type": "string"
+        },
+        "protocol": {
+            "type": "string"
+        },
+        "admin_user_info": {
+            "type": "string"
+        },
+        "dg_hier_level_4": {
+            "type": "string"
+        },
+        "is_ipv6": {
+            "type": "boolean"
+        },
+        "dest_user_info_name": {
+            "type": "string"
+        },
+        "is_forwarded": {
+            "type": "boolean"
+        },
+        "rule_matched": {
+            "type": "string"
+        },
+        "policy_id": {
+            "type": "string"
+        },
+        "ha_session_owner": {
+            "type": "string"
+        },
+        "sdwan_cluster": {
+            "type": "string"
+        },
+        "time_generated_high_res": {
+            "type": "string"
+        },
+        "vsys_name": {
+            "type": "string"
+        },
+        "dest_device_class": {
+            "type": "string"
+        },
+        "total_time_elapsed": {
+            "type": "numeric"
+        },
+        "source_port": {
+            "type": "numeric"
+        },
+        "ep_assoc_id": {
+            "type": "numeric"
+        },
+        "source_user": {
+            "type": "string"
+        },
+        "is_decrypt_mirror": {
+            "type": "boolean"
+        },
+        "app_sub_category": {
+            "type": "string"
+        },
+        "dest_device_host": {
+            "type": "string"
+        },
+        "is_source_x_fwded": {
+            "type": "boolean"
+        },
+        "chunks_total": {
+            "type": "numeric"
+        },
+        "outbound_if_details_slot": {
+            "type": "numeric"
+        },
+        "monitor_tag_imei": {
+            "type": "string"
+        },
+        "is_phishing": {
+            "type": "boolean"
+        },
+        "dest_device_os": {
+            "type": "string"
+        },
+        "is_non_std_dest_port": {
+            "type": "boolean"
+        },
+        "is_encrypted": {
+            "type": "boolean"
+        },
+        "chunks_sent": {
+            "type": "numeric"
+        },
+        "action_source": {
+            "type": "string"
+        },
+        "source_device_osfamily": {
+            "type": "string"
+        },
+        "url_category": {
+            "type": "string"
+        },
+        "is_saas_app": {
+            "type": "boolean"
+        },
+        "is_recon_excluded": {
+            "type": "boolean"
+        },
+        "action_flags": {
+            "type": "string"
+        },
+        "from_zone": {
+            "type": "string"
+        },
+        "session_end_reason": {
+            "type": "string"
+        },
+        "log_source": {
+            "type": "string"
+        },
+        "dg_hier_level_2": {
+            "type": "string"
+        },
+        "container_of_app": {
+            "type": "string"
+        },
+        "session_start_time": {
+            "type": "string"
+        },
+        "is_nat": {
+            "type": "boolean"
+        },
+        "dest_device_profile": {
+            "type": "string"
+        },
+        "is_l7_inspection_b4_session": {
+            "type": "boolean"
+        },
+        "__timestamp": {
+            "type": "string"
+        },
+        "inbound_if": {
+            "type": "string"
+        },
+        "dest_user_info_uuid": {
+            "type": "numeric"
+        },
+        "inbound_if_details_type": {
+            "type": "string"
+        },
+        "source_location": {
+            "type": "string"
+        },
+        "source_user_info_uuid": {
+            "type": "numeric"
+        },
+        "host_id": {
+            "type": "string"
+        },
+        "dg_hier_level_1": {
+            "type": "string"
+        },
+        "is_mptcp_on": {
+            "type": "boolean"
+        },
+        "is_decrypted_payload_fwded": {
+            "type": "boolean"
+        },
+        "packets_received": {
+            "type": "numeric"
+        },
+        "dest_device_model": {
+            "type": "string"
+        },
+        "_time": {
+            "type": "datetime"
+        },
+        "dest_device_category": {
+            "type": "string"
+        },
+        "dg_hier_level_3": {
+            "type": "string"
+        },
+        "rule_matched_uuid": {
+            "type": "string"
+        },
+        "pod_namespace": {
+            "type": "string"
+        },
+        "domain_edl": {
+            "type": "string"
+        },
+        "dest_device_osversion": {
+            "type": "string"
+        },
+        "dest_edl": {
+            "type": "string"
+        },
+        "chunks_received": {
+            "type": "numeric"
+        },
+        "dest_user": {
+            "type": "string"
+        },
+        "inbound_if_details_slot": {
+            "type": "numeric"
+        },
+        "source_uuid": {
+            "type": "string"
+        },
+        "log_set": {
+            "type": "string"
+        },
+        "sess_owner_rt_midx": {
+            "type": "boolean"
+        },
+        "session_tracker": {
+            "type": "numeric"
+        },
+        "outbound_if": {
+            "type": "string"
+        },
+        "link_switches": {
+            "type": "string"
+        },
+        "container_id": {
+            "type": "string"
+        },
+        "dest_port": {
+            "type": "numeric"
+        },
+        "source_user_info_name": {
+            "type": "string"
+        },
+        "outbound_if_details_type": {
+            "type": "string"
+        },
+        "outbound_if_details_port": {
+            "type": "numeric"
+        },
+        "packets_sent": {
+            "type": "numeric"
+        },
+        "inbound_if_details": {
+            "type": "string"
+        },
+        "users": {
+            "type": "string"
+        },
+        "nat_dest": {
+            "type": "string"
+        }
+    },
+    "panw_ngfw_url_raw": {
+        "dest_location": {
+            "type": "string"
+        },
+        "vsys": {
+            "type": "string"
+        },
+        "dest_uuid": {
+            "type": "string"
+        },
+        "xff": {
+            "type": "string"
+        },
+        "endpoint_serial_number": {
+            "type": "string"
+        },
+        "source_device_mac": {
+            "type": "string"
+        },
+        "dest_user_info_domain": {
+            "type": "string"
+        },
+        "source_edl": {
+            "type": "string"
+        },
+        "parent_session_id": {
+            "type": "numeric"
+        },
+        "tunnel": {
+            "type": "string"
+        },
+        "sanctioned_state_of_app": {
+            "type": "boolean"
+        },
+        "is_url_denied": {
+            "type": "boolean"
+        },
+        "dest_user_info": {
+            "type": "string"
+        },
+        "source_device_os": {
+            "type": "string"
+        },
+        "is_sym_return": {
+            "type": "boolean"
+        },
+        "sig_flags": {
+            "type": "numeric"
+        },
+        "__tz": {
+            "type": "string"
+        },
+        "referer_protocol": {
+            "type": "string"
+        },
+        "time_generated": {
+            "type": "datetime"
+        },
+        "partial_hash": {
+            "type": "string"
+        },
+        "source_device_model": {
+            "type": "string"
+        },
+        "nat_source_port": {
+            "type": "numeric"
+        },
+        "direction_of_attack": {
+            "type": "string"
+        },
+        "is_captive_portal": {
+            "type": "boolean"
+        },
+        "log_source_tz_offset": {
+            "type": "numeric"
+        },
+        "is_tunnel_inspected": {
+            "type": "boolean"
+        },
+        "is_prisma_mobile": {
+            "type": "boolean"
+        },
+        "config_version": {
+            "type": "string"
+        },
+        "log_type": {
+            "type": "string"
+        },
+        "cloud_hostname": {
+            "type": "string"
+        },
+        "sequence_no": {
+            "type": "numeric"
+        },
+        "dest_ip": {
+            "type": "string"
+        },
+        "dest_dynamic_address_group": {
+            "type": "string"
+        },
+        "log_source_name": {
+            "type": "string"
+        },
+        "is_client_to_server": {
+            "type": "boolean"
+        },
+        "source_device_profile": {
+            "type": "string"
+        },
+        "tunnelid_imsi": {
+            "type": "numeric"
+        },
+        "url_category_list": {
+            "type": "string"
+        },
+        "source_ip": {
+            "type": "string"
+        },
+        "endpoint_events": {
+            "type": "string"
+        },
+        "tunneled_app": {
+            "type": "string"
+        },
+        "outbound_if_details": {
+            "type": "string"
+        },
+        "risk_of_app": {
+            "type": "string"
+        },
+        "inbound_if_details_port": {
+            "type": "numeric"
+        },
+        "is_proxy": {
+            "type": "boolean"
+        },
+        "uri": {
+            "type": "string"
+        },
+        "inbound_if_details_unit": {
+            "type": "numeric"
+        },
+        "source_dynamic_address_group": {
+            "type": "string"
+        },
+        "is_server_to_client": {
+            "type": "boolean"
+        },
+        "is_container": {
+            "type": "boolean"
+        },
+        "outbound_if_details_unit": {
+            "type": "numeric"
+        },
+        "pod_name": {
+            "type": "string"
+        },
+        "user_agent": {
+            "type": "string"
+        },
+        "dest_device_osfamily": {
+            "type": "string"
+        },
+        "characteristics_of_app": {
+            "type": "string"
+        },
+        "threat_name_firewall": {
+            "type": "string"
+        },
+        "traffic_flags": {
+            "type": "string"
+        },
+        "is_transaction": {
+            "type": "boolean"
+        },
+        "action": {
+            "type": "string"
+        },
+        "is_decrypted": {
+            "type": "boolean"
+        },
+        "referer": {
+            "type": "string"
+        },
+        "referer_url_path": {
+            "type": "string"
+        },
+        "is_prisma_branch": {
+            "type": "boolean"
+        },
+        "vsys_id": {
+            "type": "numeric"
+        },
+        "nat_source": {
+            "type": "string"
+        },
+        "dynusergroup_name": {
+            "type": "string"
+        },
+        "dest_device_vendor": {
+            "type": "string"
+        },
+        "xff_ip": {
+            "type": "string"
+        },
+        "vendor_severity": {
+            "type": "string"
+        },
+        "session_id": {
+            "type": "numeric"
+        },
+        "referer_fqdn": {
+            "type": "string"
+        },
+        "url_domain": {
+            "type": "string"
+        },
+        "technology_of_app": {
+            "type": "string"
+        },
+        "log_time": {
+            "type": "datetime"
+        },
+        "source_user_info_domain": {
+            "type": "string"
+        },
+        "authenticated_user_info": {
+            "type": "string"
+        },
+        "source_device_osversion": {
+            "type": "string"
+        },
+        "http2_connection": {
+            "type": "numeric"
+        },
+        "nssai_network_slice_type": {
+            "type": "string"
+        },
+        "app_category": {
+            "type": "string"
+        },
+        "log_source_id": {
+            "type": "string"
+        },
+        "count_of_repeats": {
+            "type": "numeric"
+        },
+        "sub_type": {
+            "type": "string"
+        },
+        "is_dup_log": {
+            "type": "boolean"
+        },
+        "source_device_class": {
+            "type": "string"
+        },
+        "is_packet_capture": {
+            "type": "boolean"
+        },
+        "is_exported": {
+            "type": "boolean"
+        },
+        "dest_device_mac": {
+            "type": "string"
+        },
+        "parent_start_time": {
+            "type": "string"
+        },
+        "referer_port": {
+            "type": "numeric"
+        },
+        "source_device_category": {
+            "type": "string"
+        },
+        "source_user_info": {
+            "type": "string"
+        },
+        "source_device_host": {
+            "type": "string"
+        },
+        "_reporting_device_name": {
+            "type": "string"
+        },
+        "app": {
+            "type": "string"
+        },
+        "to_zone": {
+            "type": "string"
+        },
+        "_reporting_device_ip": {
+            "type": "string"
+        },
+        "nat_dest_port": {
+            "type": "numeric"
+        },
+        "non_standard_dest_port": {
+            "type": "numeric"
+        },
+        "event_time": {
+            "type": "datetime"
+        },
+        "source_device_vendor": {
+            "type": "string"
+        },
+        "flags": {
+            "type": "string"
+        },
+        "gp_host_id": {
+            "type": "string"
+        },
+        "protocol": {
+            "type": "string"
+        },
+        "http_headers": {
+            "type": "string"
+        },
+        "admin_user_info": {
+            "type": "string"
+        },
+        "dg_hier_level_4": {
+            "type": "string"
+        },
+        "is_ipv6": {
+            "type": "boolean"
+        },
+        "dest_user_info_name": {
+            "type": "string"
+        },
+        "is_forwarded": {
+            "type": "boolean"
+        },
+        "rule_matched": {
+            "type": "string"
+        },
+        "time_generated_high_res": {
+            "type": "string"
+        },
+        "vsys_name": {
+            "type": "string"
+        },
+        "dest_device_class": {
+            "type": "string"
+        },
+        "source_port": {
+            "type": "numeric"
+        },
+        "source_user": {
+            "type": "string"
+        },
+        "content_version": {
+            "type": "string"
+        },
+        "is_decrypt_mirror": {
+            "type": "boolean"
+        },
+        "app_sub_category": {
+            "type": "string"
+        },
+        "dest_device_host": {
+            "type": "string"
+        },
+        "is_source_x_fwded": {
+            "type": "boolean"
+        },
+        "outbound_if_details_slot": {
+            "type": "numeric"
+        },
+        "monitor_tag_imei": {
+            "type": "string"
+        },
+        "is_phishing": {
+            "type": "boolean"
+        },
+        "dest_device_os": {
+            "type": "string"
+        },
+        "is_non_std_dest_port": {
+            "type": "boolean"
+        },
+        "is_encrypted": {
+            "type": "boolean"
+        },
+        "source_device_osfamily": {
+            "type": "string"
+        },
+        "url_category": {
+            "type": "string"
+        },
+        "is_saas_app": {
+            "type": "boolean"
+        },
+        "is_recon_excluded": {
+            "type": "boolean"
+        },
+        "action_flags": {
+            "type": "string"
+        },
+        "from_zone": {
+            "type": "string"
+        },
+        "log_source": {
+            "type": "string"
+        },
+        "dg_hier_level_2": {
+            "type": "string"
+        },
+        "severity": {
+            "type": "string"
+        },
+        "container_of_app": {
+            "type": "string"
+        },
+        "is_nat": {
+            "type": "boolean"
+        },
+        "dest_device_profile": {
+            "type": "string"
+        },
+        "__timestamp": {
+            "type": "string"
+        },
+        "inbound_if": {
+            "type": "string"
+        },
+        "dest_user_info_uuid": {
+            "type": "numeric"
+        },
+        "inbound_if_details_type": {
+            "type": "string"
+        },
+        "source_location": {
+            "type": "string"
+        },
+        "source_user_info_uuid": {
+            "type": "numeric"
+        },
+        "dg_hier_level_1": {
+            "type": "string"
+        },
+        "is_mptcp_on": {
+            "type": "boolean"
+        },
+        "pcap_id": {
+            "type": "numeric"
+        },
+        "pcap": {
+            "type": "string"
+        },
+        "dest_device_model": {
+            "type": "string"
+        },
+        "_time": {
+            "type": "datetime"
+        },
+        "dest_device_category": {
+            "type": "string"
+        },
+        "dg_hier_level_3": {
+            "type": "string"
+        },
+        "rule_matched_uuid": {
+            "type": "string"
+        },
+        "pod_namespace": {
+            "type": "string"
+        },
+        "domain_edl": {
+            "type": "string"
+        },
+        "dest_device_osversion": {
+            "type": "string"
+        },
+        "url_idx": {
+            "type": "numeric"
+        },
+        "dest_edl": {
+            "type": "string"
+        },
+        "inline_ml_verdict": {
+            "type": "string"
+        },
+        "http_method": {
+            "type": "string"
+        },
+        "dest_user": {
+            "type": "string"
+        },
+        "inbound_if_details_slot": {
+            "type": "numeric"
+        },
+        "source_uuid": {
+            "type": "string"
+        },
+        "log_set": {
+            "type": "string"
+        },
+        "outbound_if": {
+            "type": "string"
+        },
+        "container_id": {
+            "type": "string"
+        },
+        "dest_port": {
+            "type": "numeric"
+        },
+        "source_user_info_name": {
+            "type": "string"
+        },
+        "outbound_if_details_type": {
+            "type": "string"
+        },
+        "outbound_if_details_port": {
+            "type": "numeric"
+        },
+        "inbound_if_details": {
+            "type": "string"
+        },
+        "users": {
+            "type": "string"
+        },
+        "content_type": {
+            "type": "string"
+        },
+        "nat_dest": {
+            "type": "string"
+        }
+    },
+    "panw_ngfw_filedata_raw": {
+        "dest_location": {
+            "type": "string"
+        },
+        "vsys": {
+            "type": "string"
+        },
+        "dest_uuid": {
+            "type": "string"
+        },
+        "endpoint_serial_number": {
+            "type": "string"
+        },
+        "source_device_mac": {
+            "type": "string"
+        },
+        "dest_user_info_domain": {
+            "type": "string"
+        },
+        "source_edl": {
+            "type": "string"
+        },
+        "parent_session_id": {
+            "type": "numeric"
+        },
+        "file_url": {
+            "type": "string"
+        },
+        "tunnel": {
+            "type": "string"
+        },
+        "sanctioned_state_of_app": {
+            "type": "boolean"
+        },
+        "is_url_denied": {
+            "type": "boolean"
+        },
+        "dest_user_info": {
+            "type": "string"
+        },
+        "source_device_os": {
+            "type": "string"
+        },
+        "is_sym_return": {
+            "type": "boolean"
+        },
+        "sig_flags": {
+            "type": "numeric"
+        },
+        "__tz": {
+            "type": "string"
+        },
+        "time_generated": {
+            "type": "datetime"
+        },
+        "partial_hash": {
+            "type": "string"
+        },
+        "source_device_model": {
+            "type": "string"
+        },
+        "direction_of_attack": {
+            "type": "string"
+        },
+        "nat_source_port": {
+            "type": "numeric"
+        },
+        "is_captive_portal": {
+            "type": "boolean"
+        },
+        "log_source_tz_offset": {
+            "type": "numeric"
+        },
+        "is_tunnel_inspected": {
+            "type": "boolean"
+        },
+        "is_prisma_mobile": {
+            "type": "boolean"
+        },
+        "config_version": {
+            "type": "string"
+        },
+        "log_type": {
+            "type": "string"
+        },
+        "cloud_hostname": {
+            "type": "string"
+        },
+        "sequence_no": {
+            "type": "numeric"
+        },
+        "dest_ip": {
+            "type": "string"
+        },
+        "dest_dynamic_address_group": {
+            "type": "string"
+        },
+        "log_source_name": {
+            "type": "string"
+        },
+        "is_client_to_server": {
+            "type": "boolean"
+        },
+        "source_device_profile": {
+            "type": "string"
+        },
+        "tunnelid_imsi": {
+            "type": "numeric"
+        },
+        "source_ip": {
+            "type": "string"
+        },
+        "endpoint_events": {
+            "type": "string"
+        },
+        "tunneled_app": {
+            "type": "string"
+        },
+        "outbound_if_details": {
+            "type": "string"
+        },
+        "risk_of_app": {
+            "type": "string"
+        },
+        "inbound_if_details_port": {
+            "type": "numeric"
+        },
+        "is_proxy": {
+            "type": "boolean"
+        },
+        "inbound_if_details_unit": {
+            "type": "numeric"
+        },
+        "source_dynamic_address_group": {
+            "type": "string"
+        },
+        "report_id": {
+            "type": "numeric"
+        },
+        "is_server_to_client": {
+            "type": "boolean"
+        },
+        "is_container": {
+            "type": "boolean"
+        },
+        "outbound_if_details_unit": {
+            "type": "numeric"
+        },
+        "pod_name": {
+            "type": "string"
+        },
+        "dest_device_osfamily": {
+            "type": "string"
+        },
+        "characteristics_of_app": {
+            "type": "string"
+        },
+        "threat_name_firewall": {
+            "type": "string"
+        },
+        "traffic_flags": {
+            "type": "string"
+        },
+        "is_transaction": {
+            "type": "boolean"
+        },
+        "action": {
+            "type": "string"
+        },
+        "file_sha_256": {
+            "type": "string"
+        },
+        "is_decrypted": {
+            "type": "boolean"
+        },
+        "is_prisma_branch": {
+            "type": "boolean"
+        },
+        "vsys_id": {
+            "type": "numeric"
+        },
+        "nat_source": {
+            "type": "string"
+        },
+        "vendor_severity": {
+            "type": "string"
+        },
+        "dest_device_vendor": {
+            "type": "string"
+        },
+        "dynusergroup_name": {
+            "type": "string"
+        },
+        "xff_ip": {
+            "type": "string"
+        },
+        "session_id": {
+            "type": "numeric"
+        },
+        "technology_of_app": {
+            "type": "string"
+        },
+        "log_time": {
+            "type": "datetime"
+        },
+        "source_user_info_domain": {
+            "type": "string"
+        },
+        "authenticated_user_info": {
+            "type": "string"
+        },
+        "source_device_osversion": {
+            "type": "string"
+        },
+        "http2_connection": {
+            "type": "numeric"
+        },
+        "nssai_network_slice_type": {
+            "type": "string"
+        },
+        "app_category": {
+            "type": "string"
+        },
+        "log_source_id": {
+            "type": "string"
+        },
+        "count_of_repeats": {
+            "type": "numeric"
+        },
+        "sub_type": {
+            "type": "string"
+        },
+        "is_dup_log": {
+            "type": "boolean"
+        },
+        "source_device_class": {
+            "type": "string"
+        },
+        "is_packet_capture": {
+            "type": "boolean"
+        },
+        "is_exported": {
+            "type": "boolean"
+        },
+        "dest_device_mac": {
+            "type": "string"
+        },
+        "parent_start_time": {
+            "type": "string"
+        },
+        "source_device_category": {
+            "type": "string"
+        },
+        "source_user_info": {
+            "type": "string"
+        },
+        "source_device_host": {
+            "type": "string"
+        },
+        "_reporting_device_name": {
+            "type": "string"
+        },
+        "app": {
+            "type": "string"
+        },
+        "to_zone": {
+            "type": "string"
+        },
+        "_reporting_device_ip": {
+            "type": "string"
+        },
+        "file_id": {
+            "type": "numeric"
+        },
+        "nat_dest_port": {
+            "type": "numeric"
+        },
+        "non_standard_dest_port": {
+            "type": "numeric"
+        },
+        "event_time": {
+            "type": "datetime"
+        },
+        "flags": {
+            "type": "numeric"
+        },
+        "protocol": {
+            "type": "string"
+        },
+        "admin_user_info": {
+            "type": "string"
+        },
+        "dg_hier_level_4": {
+            "type": "string"
+        },
+        "is_ipv6": {
+            "type": "boolean"
+        },
+        "dest_user_info_name": {
+            "type": "string"
+        },
+        "is_forwarded": {
+            "type": "boolean"
+        },
+        "rule_matched": {
+            "type": "string"
+        },
+        "time_generated_high_res": {
+            "type": "string"
+        },
+        "vsys_name": {
+            "type": "string"
+        },
+        "dest_device_class": {
+            "type": "string"
+        },
+        "source_port": {
+            "type": "numeric"
+        },
+        "source_user": {
+            "type": "string"
+        },
+        "content_version": {
+            "type": "string"
+        },
+        "is_decrypt_mirror": {
+            "type": "boolean"
+        },
+        "app_sub_category": {
+            "type": "string"
+        },
+        "dest_device_host": {
+            "type": "string"
+        },
+        "is_source_x_fwded": {
+            "type": "boolean"
+        },
+        "threat_category": {
+            "type": "string"
+        },
+        "outbound_if_details_slot": {
+            "type": "numeric"
+        },
+        "monitor_tag_imei": {
+            "type": "string"
+        },
+        "is_phishing": {
+            "type": "boolean"
+        },
+        "dest_device_os": {
+            "type": "string"
+        },
+        "is_non_std_dest_port": {
+            "type": "boolean"
+        },
+        "is_encrypted": {
+            "type": "boolean"
+        },
+        "source_device_osfamily": {
+            "type": "string"
+        },
+        "url_category": {
+            "type": "string"
+        },
+        "is_saas_app": {
+            "type": "boolean"
+        },
+        "is_recon_excluded": {
+            "type": "boolean"
+        },
+        "action_flags": {
+            "type": "string"
+        },
+        "from_zone": {
+            "type": "string"
+        },
+        "log_source": {
+            "type": "string"
+        },
+        "dg_hier_level_2": {
+            "type": "string"
+        },
+        "severity": {
+            "type": "string"
+        },
+        "container_of_app": {
+            "type": "string"
+        },
+        "is_nat": {
+            "type": "boolean"
+        },
+        "dest_device_profile": {
+            "type": "string"
+        },
+        "__timestamp": {
+            "type": "string"
+        },
+        "inbound_if": {
+            "type": "string"
+        },
+        "dest_user_info_uuid": {
+            "type": "numeric"
+        },
+        "inbound_if_details_type": {
+            "type": "string"
+        },
+        "source_location": {
+            "type": "string"
+        },
+        "source_user_info_uuid": {
+            "type": "numeric"
+        },
+        "dg_hier_level_1": {
+            "type": "string"
+        },
+        "is_mptcp_on": {
+            "type": "boolean"
+        },
+        "pcap_id": {
+            "type": "numeric"
+        },
+        "nat_dest": {
+            "type": "string"
+        },
+        "dest_device_model": {
+            "type": "string"
+        },
+        "file_type": {
+            "type": "string"
+        },
+        "_time": {
+            "type": "datetime"
+        },
+        "dest_device_category": {
+            "type": "string"
+        },
+        "dg_hier_level_3": {
+            "type": "string"
+        },
+        "rule_matched_uuid": {
+            "type": "string"
+        },
+        "pod_namespace": {
+            "type": "string"
+        },
+        "domain_edl": {
+            "type": "string"
+        },
+        "dest_device_osversion": {
+            "type": "string"
+        },
+        "dest_edl": {
+            "type": "string"
+        },
+        "dest_user": {
+            "type": "string"
+        },
+        "inbound_if_details_slot": {
+            "type": "numeric"
+        },
+        "source_uuid": {
+            "type": "string"
+        },
+        "file_name": {
+            "type": "string"
+        },
+        "log_set": {
+            "type": "string"
+        },
+        "outbound_if": {
+            "type": "string"
+        },
+        "container_id": {
+            "type": "string"
+        },
+        "dest_port": {
+            "type": "numeric"
+        },
+        "source_user_info_name": {
+            "type": "string"
+        },
+        "outbound_if_details_type": {
+            "type": "string"
+        },
+        "outbound_if_details_port": {
+            "type": "numeric"
+        },
+        "inbound_if_details": {
+            "type": "string"
+        },
+        "users": {
+            "type": "string"
+        },
+        "source_device_vendor": {
+            "type": "string"
+        }
+    },
+    "panw_ngfw_userid_raw": {
+        "ug_flags": {
+            "type": "numeric"
+        },
+        "vsys": {
+            "type": "string"
+        },
+        "source_user_info": {
+            "type": "string"
+        },
+        "source_device_host": {
+            "type": "string"
+        },
+        "endpoint_serial_number": {
+            "type": "string"
+        },
+        "source_device_mac": {
+            "type": "string"
+        },
+        "_reporting_device_name": {
+            "type": "string"
+        },
+        "authenticated_user_info_name": {
+            "type": "string"
+        },
+        "_reporting_device_ip": {
+            "type": "string"
+        },
+        "dest_user_info": {
+            "type": "string"
+        },
+        "source_device_os": {
+            "type": "string"
+        },
+        "event_time": {
+            "type": "datetime"
+        },
+        "__tz": {
+            "type": "string"
+        },
+        "time_generated": {
+            "type": "datetime"
+        },
+        "flags": {
+            "type": "string"
+        },
+        "partial_hash": {
+            "type": "string"
+        },
+        "source_device_model": {
+            "type": "string"
+        },
+        "authenticated_user_info_domain": {
+            "type": "string"
+        },
+        "user_group_found": {
+            "type": "boolean"
+        },
+        "log_source_tz_offset": {
+            "type": "numeric"
+        },
+        "admin_user_info": {
+            "type": "string"
+        },
+        "dg_hier_level_4": {
+            "type": "string"
+        },
+        "is_prisma_mobile": {
+            "type": "boolean"
+        },
+        "config_version": {
+            "type": "string"
+        },
+        "is_forwarded": {
+            "type": "boolean"
+        },
+        "log_type": {
+            "type": "string"
+        },
+        "sequence_no": {
+            "type": "numeric"
+        },
+        "time_generated_high_res": {
+            "type": "string"
+        },
+        "log_source_name": {
+            "type": "string"
+        },
+        "vsys_name": {
+            "type": "string"
+        },
+        "source_device_profile": {
+            "type": "string"
+        },
+        "auth_completion_time": {
+            "type": "string"
+        },
+        "source_user": {
+            "type": "string"
+        },
+        "source_ip": {
+            "type": "string"
+        },
+        "endpoint_events": {
+            "type": "string"
+        },
+        "outbound_if_details": {
+            "type": "string"
+        },
+        "source_device_osfamily": {
+            "type": "string"
+        },
+        "action_flags": {
+            "type": "string"
+        },
+        "dg_hier_level_2": {
+            "type": "string"
+        },
+        "__timestamp": {
+            "type": "string"
+        },
+        "mapping_timeout": {
+            "type": "numeric"
+        },
+        "user_identified_by_source_as": {
+            "type": "string"
+        },
+        "characteristics_of_app": {
+            "type": "string"
+        },
+        "source_user_info_uuid": {
+            "type": "numeric"
+        },
+        "dg_hier_level_1": {
+            "type": "string"
+        },
+        "threat_name_firewall": {
+            "type": "string"
+        },
+        "user": {
+            "type": "string"
+        },
+        "traffic_flags": {
+            "type": "string"
+        },
+        "_time": {
+            "type": "datetime"
+        },
+        "dg_hier_level_3": {
+            "type": "string"
+        },
+        "is_prisma_branch": {
+            "type": "boolean"
+        },
+        "mapping_data_source_type": {
+            "type": "string"
+        },
+        "vsys_id": {
+            "type": "numeric"
+        },
+        "mapping_data_source_name": {
+            "type": "string"
+        },
+        "domain_edl": {
+            "type": "string"
+        },
+        "mapping_data_source": {
+            "type": "string"
+        },
+        "log_time": {
+            "type": "datetime"
+        },
+        "source_user_info_domain": {
+            "type": "string"
+        },
+        "authenticated_user_info": {
+            "type": "string"
+        },
+        "source_device_osversion": {
+            "type": "string"
+        },
+        "source_user_info_name": {
+            "type": "string"
+        },
+        "count_of_repeats": {
+            "type": "numeric"
+        },
+        "sub_type": {
+            "type": "string"
+        },
+        "is_dup_log": {
+            "type": "boolean"
+        },
+        "inbound_if_details": {
+            "type": "string"
+        },
+        "source_device_class": {
+            "type": "string"
+        },
+        "event_id": {
+            "type": "string"
+        },
+        "auth_factor_num": {
+            "type": "numeric"
+        },
+        "is_exported": {
+            "type": "boolean"
+        },
+        "is_duplicate_user": {
+            "type": "boolean"
+        },
+        "source_device_vendor": {
+            "type": "string"
+        },
+        "source_device_category": {
+            "type": "string"
+        }
+    },
+    "panw_ngfw_auth_raw": {
+        "vsys": {
+            "type": "string"
+        },
+        "source_user_info": {
+            "type": "string"
+        },
+        "source_device_host": {
+            "type": "string"
+        },
+        "endpoint_serial_number": {
+            "type": "string"
+        },
+        "source_device_mac": {
+            "type": "string"
+        },
+        "_reporting_device_name": {
+            "type": "string"
+        },
+        "authenticated_user_info_name": {
+            "type": "string"
+        },
+        "_reporting_device_ip": {
+            "type": "string"
+        },
+        "object": {
+            "type": "string"
+        },
+        "dest_user_info": {
+            "type": "string"
+        },
+        "source_device_os": {
+            "type": "string"
+        },
+        "event_time": {
+            "type": "datetime"
+        },
+        "__tz": {
+            "type": "string"
+        },
+        "time_generated": {
+            "type": "datetime"
+        },
+        "flags": {
+            "type": "string"
+        },
+        "partial_hash": {
+            "type": "string"
+        },
+        "source_device_model": {
+            "type": "string"
+        },
+        "authenticated_user_info_domain": {
+            "type": "string"
+        },
+        "log_source_tz_offset": {
+            "type": "numeric"
+        },
+        "auth_policy": {
+            "type": "string"
+        },
+        "admin_user_info": {
+            "type": "string"
+        },
+        "dg_hier_level_4": {
+            "type": "string"
+        },
+        "mfa_auth_id": {
+            "type": "numeric"
+        },
+        "is_prisma_mobile": {
+            "type": "boolean"
+        },
+        "config_version": {
+            "type": "string"
+        },
+        "is_forwarded": {
+            "type": "boolean"
+        },
+        "log_type": {
+            "type": "string"
+        },
+        "sequence_no": {
+            "type": "numeric"
+        },
+        "time_generated_high_res": {
+            "type": "string"
+        },
+        "auth_proto": {
+            "type": "numeric"
+        },
+        "log_source_name": {
+            "type": "string"
+        },
+        "vsys_name": {
+            "type": "string"
+        },
+        "source_device_profile": {
+            "type": "string"
+        },
+        "source_user": {
+            "type": "string"
+        },
+        "source_ip": {
+            "type": "string"
+        },
+        "endpoint_events": {
+            "type": "string"
+        },
+        "auth_event_name": {
+            "type": "string"
+        },
+        "outbound_if_details": {
+            "type": "string"
+        },
+        "source_device_osfamily": {
+            "type": "string"
+        },
+        "action_flags": {
+            "type": "string"
+        },
+        "dg_hier_level_2": {
+            "type": "string"
+        },
+        "client_type": {
+            "type": "numeric"
+        },
+        "__timestamp": {
+            "type": "string"
+        },
+        "characteristics_of_app": {
+            "type": "string"
+        },
+        "source_user_info_uuid": {
+            "type": "numeric"
+        },
+        "dg_hier_level_1": {
+            "type": "string"
+        },
+        "threat_name_firewall": {
+            "type": "string"
+        },
+        "user": {
+            "type": "string"
+        },
+        "traffic_flags": {
+            "type": "string"
+        },
+        "_time": {
+            "type": "datetime"
+        },
+        "normalize_user": {
+            "type": "string"
+        },
+        "dg_hier_level_3": {
+            "type": "string"
+        },
+        "is_prisma_branch": {
+            "type": "boolean"
+        },
+        "vsys_id": {
+            "type": "numeric"
+        },
+        "rule_matched_uuid": {
+            "type": "string"
+        },
+        "domain_edl": {
+            "type": "string"
+        },
+        "log_time": {
+            "type": "datetime"
+        },
+        "source_user_info_domain": {
+            "type": "string"
+        },
+        "log_set": {
+            "type": "string"
+        },
+        "authenticated_user_info": {
+            "type": "string"
+        },
+        "source_device_osversion": {
+            "type": "string"
+        },
+        "auth_description": {
+            "type": "string"
+        },
+        "auth_server_profile": {
+            "type": "string"
+        },
+        "source_user_info_name": {
+            "type": "string"
+        },
+        "count_of_repeats": {
+            "type": "numeric"
+        },
+        "sub_type": {
+            "type": "string"
+        },
+        "is_dup_log": {
+            "type": "boolean"
+        },
+        "inbound_if_details": {
+            "type": "string"
+        },
+        "source_device_class": {
+            "type": "string"
+        },
+        "auth_factor_num": {
+            "type": "numeric"
+        },
+        "is_exported": {
+            "type": "boolean"
+        },
+        "source_device_vendor": {
+            "type": "string"
+        },
+        "source_device_category": {
+            "type": "string"
+        }
+    },
+    "panw_ngfw_system_raw": {
+        "vsys": {
+            "type": "string"
+        },
+        "source_user_info": {
+            "type": "string"
+        },
+        "source_device_host": {
+            "type": "string"
+        },
+        "endpoint_serial_number": {
+            "type": "string"
+        },
+        "source_device_mac": {
+            "type": "string"
+        },
+        "_reporting_device_name": {
+            "type": "string"
+        },
+        "_reporting_device_ip": {
+            "type": "string"
+        },
+        "dest_user_info": {
+            "type": "string"
+        },
+        "source_device_os": {
+            "type": "string"
+        },
+        "event_time": {
+            "type": "datetime"
+        },
+        "__tz": {
+            "type": "string"
+        },
+        "source_device_vendor": {
+            "type": "string"
+        },
+        "flags": {
+            "type": "string"
+        },
+        "time_generated": {
+            "type": "datetime"
+        },
+        "partial_hash": {
+            "type": "string"
+        },
+        "source_device_model": {
+            "type": "string"
+        },
+        "log_source_tz_offset": {
+            "type": "numeric"
+        },
+        "admin_user_info": {
+            "type": "string"
+        },
+        "dg_hier_level_4": {
+            "type": "string"
+        },
+        "is_prisma_mobile": {
+            "type": "boolean"
+        },
+        "config_version": {
+            "type": "string"
+        },
+        "is_forwarded": {
+            "type": "boolean"
+        },
+        "log_type": {
+            "type": "string"
+        },
+        "sequence_no": {
+            "type": "numeric"
+        },
+        "time_generated_high_res": {
+            "type": "string"
+        },
+        "template": {
+            "type": "string"
+        },
+        "log_source_name": {
+            "type": "string"
+        },
+        "vsys_name": {
+            "type": "string"
+        },
+        "source_device_profile": {
+            "type": "string"
+        },
+        "source_user": {
+            "type": "string"
+        },
+        "source_ip": {
+            "type": "string"
+        },
+        "event_component": {
+            "type": "string"
+        },
+        "endpoint_events": {
+            "type": "string"
+        },
+        "outbound_if_details": {
+            "type": "string"
+        },
+        "source_device_osfamily": {
+            "type": "string"
+        },
+        "action_flags": {
+            "type": "string"
+        },
+        "dg_hier_level_2": {
+            "type": "string"
+        },
+        "severity": {
+            "type": "string"
+        },
+        "__timestamp": {
+            "type": "string"
+        },
+        "characteristics_of_app": {
+            "type": "string"
+        },
+        "source_user_info_uuid": {
+            "type": "numeric"
+        },
+        "dg_hier_level_1": {
+            "type": "string"
+        },
+        "event_name": {
+            "type": "string"
+        },
+        "threat_name_firewall": {
+            "type": "string"
+        },
+        "traffic_flags": {
+            "type": "string"
+        },
+        "_time": {
+            "type": "datetime"
+        },
+        "dg_hier_level_3": {
+            "type": "string"
+        },
+        "is_prisma_branch": {
+            "type": "boolean"
+        },
+        "vsys_id": {
+            "type": "numeric"
+        },
+        "vendor_severity": {
+            "type": "string"
+        },
+        "domain_edl": {
+            "type": "string"
+        },
+        "event_component_id": {
+            "type": "numeric"
+        },
+        "log_time": {
+            "type": "datetime"
+        },
+        "event_description": {
+            "type": "string"
+        },
+        "source_user_info_domain": {
+            "type": "string"
+        },
+        "authenticated_user_info": {
+            "type": "string"
+        },
+        "source_device_osversion": {
+            "type": "string"
+        },
+        "source_user_info_name": {
+            "type": "string"
+        },
+        "count_of_repeats": {
+            "type": "numeric"
+        },
+        "sub_type": {
+            "type": "string"
+        },
+        "is_dup_log": {
+            "type": "boolean"
+        },
+        "inbound_if_details": {
+            "type": "string"
+        },
+        "source_device_class": {
+            "type": "string"
+        },
+        "is_exported": {
+            "type": "boolean"
+        },
+        "device_group": {
+            "type": "string"
+        },
+        "source_device_category": {
+            "type": "string"
+        }
+    },
+    "panw_ngfw_globalprotect_raw": {
+        "vsys": {
+            "type": "string"
+        },
+        "source_user_info": {
+            "type": "string"
+        },
+        "source_device_host": {
+            "type": "string"
+        },
+        "endpoint_serial_number": {
+            "type": "string"
+        },
+        "source_device_mac": {
+            "type": "string"
+        },
+        "_reporting_device_name": {
+            "type": "string"
+        },
+        "_reporting_device_ip": {
+            "type": "string"
+        },
+        "dest_user_info": {
+            "type": "string"
+        },
+        "source_device_os": {
+            "type": "string"
+        },
+        "event_time": {
+            "type": "datetime"
+        },
+        "__tz": {
+            "type": "string"
+        },
+        "time_generated": {
+            "type": "datetime"
+        },
+        "flags": {
+            "type": "string"
+        },
+        "partial_hash": {
+            "type": "string"
+        },
+        "source_device_model": {
+            "type": "string"
+        },
+        "log_source_tz_offset": {
+            "type": "numeric"
+        },
+        "admin_user_info": {
+            "type": "string"
+        },
+        "dg_hier_level_4": {
+            "type": "string"
+        },
+        "is_prisma_mobile": {
+            "type": "boolean"
+        },
+        "config_version": {
+            "type": "string"
+        },
+        "is_forwarded": {
+            "type": "boolean"
+        },
+        "connect_method": {
+            "type": "string"
+        },
+        "endpoint_os_version": {
+            "type": "string"
+        },
+        "log_type": {
+            "type": "string"
+        },
+        "sequence_no": {
+            "type": "numeric"
+        },
+        "time_generated_high_res": {
+            "type": "string"
+        },
+        "log_source_name": {
+            "type": "string"
+        },
+        "vsys_name": {
+            "type": "string"
+        },
+        "source_device_profile": {
+            "type": "string"
+        },
+        "gateway": {
+            "type": "string"
+        },
+        "is_exported": {
+            "type": "boolean"
+        },
+        "source_user": {
+            "type": "string"
+        },
+        "source_ip": {
+            "type": "string"
+        },
+        "private_ipv6": {
+            "type": "string"
+        },
+        "login_duration": {
+            "type": "numeric"
+        },
+        "status": {
+            "type": "string"
+        },
+        "endpoint_events": {
+            "type": "string"
+        },
+        "outbound_if_details": {
+            "type": "string"
+        },
+        "source_device_osfamily": {
+            "type": "string"
+        },
+        "action_flags": {
+            "type": "string"
+        },
+        "log_source": {
+            "type": "string"
+        },
+        "endpoint_gp_version": {
+            "type": "numeric"
+        },
+        "dg_hier_level_2": {
+            "type": "string"
+        },
+        "source_region": {
+            "type": "string"
+        },
+        "endpoint_os_type": {
+            "type": "string"
+        },
+        "__timestamp": {
+            "type": "string"
+        },
+        "portal": {
+            "type": "string"
+        },
+        "public_ip": {
+            "type": "string"
+        },
+        "characteristics_of_app": {
+            "type": "string"
+        },
+        "source_user_info_uuid": {
+            "type": "numeric"
+        },
+        "host_id": {
+            "type": "string"
+        },
+        "dg_hier_level_1": {
+            "type": "string"
+        },
+        "threat_name_firewall": {
+            "type": "string"
+        },
+        "traffic_flags": {
+            "type": "string"
+        },
+        "connection_error": {
+            "type": "string"
+        },
+        "source_device_category": {
+            "type": "string"
+        },
+        "public_ipv6": {
+            "type": "string"
+        },
+        "_time": {
+            "type": "datetime"
+        },
+        "dg_hier_level_3": {
+            "type": "string"
+        },
+        "is_prisma_branch": {
+            "type": "boolean"
+        },
+        "vsys_id": {
+            "type": "numeric"
+        },
+        "domain_edl": {
+            "type": "string"
+        },
+        "stage": {
+            "type": "string"
+        },
+        "log_time": {
+            "type": "datetime"
+        },
+        "source_user_info_domain": {
+            "type": "string"
+        },
+        "authenticated_user_info": {
+            "type": "string"
+        },
+        "source_device_osversion": {
+            "type": "string"
+        },
+        "opaque": {
+            "type": "string"
+        },
+        "auth_method": {
+            "type": "string"
+        },
+        "source_user_info_name": {
+            "type": "string"
+        },
+        "log_source_id": {
+            "type": "string"
+        },
+        "count_of_repeats": {
+            "type": "numeric"
+        },
+        "private_ip": {
+            "type": "string"
+        },
+        "sub_type": {
+            "type": "string"
+        },
+        "is_dup_log": {
+            "type": "boolean"
+        },
+        "inbound_if_details": {
+            "type": "string"
+        },
+        "source_device_class": {
+            "type": "string"
+        },
+        "event_id": {
+            "type": "string"
+        },
+        "endpoint_device_name": {
+            "type": "string"
+        },
+        "source_device_vendor": {
+            "type": "string"
+        },
+        "ssl_response_time": {
+            "type": "numeric"
+        }
+    },
+    "panw_ngfw_tunnel_raw": {
+        "dest_location": {
+            "type": "string"
+        },
+        "vsys": {
+            "type": "string"
+        },
+        "dest_uuid": {
+            "type": "string"
+        },
+        "endpoint_serial_number": {
+            "type": "string"
+        },
+        "source_device_mac": {
+            "type": "string"
+        },
+        "dest_user_info_domain": {
+            "type": "string"
+        },
+        "source_edl": {
+            "type": "string"
+        },
+        "parent_session_id": {
+            "type": "numeric"
+        },
+        "is_decryption_log": {
+            "type": "boolean"
+        },
+        "tunnel": {
+            "type": "string"
+        },
+        "sanctioned_state_of_app": {
+            "type": "boolean"
+        },
+        "packets_dropped_max_encap": {
+            "type": "numeric"
+        },
+        "is_url_denied": {
+            "type": "boolean"
+        },
+        "nssai_network_slice_differentiator": {
+            "type": "string"
+        },
+        "dest_user_info": {
+            "type": "string"
+        },
+        "tunnel_message_type": {
+            "type": "numeric"
+        },
+        "source_device_os": {
+            "type": "string"
+        },
+        "is_sym_return": {
+            "type": "boolean"
+        },
+        "sig_flags": {
+            "type": "numeric"
+        },
+        "tunnel_sessions_created": {
+            "type": "numeric"
+        },
+        "__tz": {
+            "type": "string"
+        },
+        "time_generated": {
+            "type": "datetime"
+        },
+        "partial_hash": {
+            "type": "string"
+        },
+        "source_device_model": {
+            "type": "string"
+        },
+        "nat_source_port": {
+            "type": "numeric"
+        },
+        "direction_of_attack": {
+            "type": "string"
+        },
+        "is_captive_portal": {
+            "type": "boolean"
+        },
+        "bytes_received": {
+            "type": "numeric"
+        },
+        "log_source_tz_offset": {
+            "type": "numeric"
+        },
+        "mobile_country_code": {
+            "type": "numeric"
+        },
+        "is_tunnel_inspected": {
+            "type": "boolean"
+        },
+        "is_prisma_mobile": {
+            "type": "boolean"
+        },
+        "config_version": {
+            "type": "string"
+        },
+        "log_type": {
+            "type": "string"
+        },
+        "cloud_hostname": {
+            "type": "string"
+        },
+        "sdwan_cluster_type": {
+            "type": "string"
+        },
+        "sequence_no": {
+            "type": "numeric"
+        },
+        "dest_ip": {
+            "type": "string"
+        },
+        "dest_dynamic_address_group": {
+            "type": "string"
+        },
+        "log_source_name": {
+            "type": "string"
+        },
+        "is_client_to_server": {
+            "type": "boolean"
+        },
+        "source_device_profile": {
+            "type": "string"
+        },
+        "tunnelid_imsi": {
+            "type": "numeric"
+        },
+        "link_change_count": {
+            "type": "numeric"
+        },
+        "source_ip": {
+            "type": "string"
+        },
+        "sdwan_device_type": {
+            "type": "string"
+        },
+        "tunnel_event_code": {
+            "type": "numeric"
+        },
+        "tunnel_endpoint_id_1": {
+            "type": "numeric"
+        },
+        "tunnel_interface": {
+            "type": "numeric"
+        },
+        "tunneled_app": {
+            "type": "string"
+        },
+        "sdwan_site": {
+            "type": "string"
+        },
+        "endpoint_events": {
+            "type": "string"
+        },
+        "outbound_if_details": {
+            "type": "string"
+        },
+        "risk_of_app": {
+            "type": "string"
+        },
+        "inbound_if_details_port": {
+            "type": "numeric"
+        },
+        "pdu_session_id": {
+            "type": "numeric"
+        },
+        "is_proxy": {
+            "type": "boolean"
+        },
+        "inbound_if_details_unit": {
+            "type": "numeric"
+        },
+        "packets_dropped_strict_check": {
+            "type": "numeric"
+        },
+        "source_dynamic_address_group": {
+            "type": "string"
+        },
+        "is_server_to_client": {
+            "type": "boolean"
+        },
+        "is_container": {
+            "type": "boolean"
+        },
+        "outbound_if_details_unit": {
+            "type": "numeric"
+        },
+        "tunnel_remote_imsi_id": {
+            "type": "numeric"
+        },
+        "mobile_network_code": {
+            "type": "numeric"
+        },
+        "pod_name": {
+            "type": "string"
+        },
+        "mobile_base_station_code": {
+            "type": "numeric"
+        },
+        "dest_device_osfamily": {
+            "type": "string"
+        },
+        "characteristics_of_app": {
+            "type": "string"
+        },
+        "threat_name_firewall": {
+            "type": "string"
+        },
+        "traffic_flags": {
+            "type": "string"
+        },
+        "is_transaction": {
+            "type": "boolean"
+        },
+        "action": {
+            "type": "string"
+        },
+        "is_decrypted": {
+            "type": "boolean"
+        },
+        "is_prisma_branch": {
+            "type": "boolean"
+        },
+        "vsys_id": {
+            "type": "numeric"
+        },
+        "nat_source": {
+            "type": "string"
+        },
+        "dynusergroup_name": {
+            "type": "string"
+        },
+        "dest_device_vendor": {
+            "type": "string"
+        },
+        "xff_ip": {
+            "type": "string"
+        },
+        "vendor_severity": {
+            "type": "string"
+        },
+        "session_id": {
+            "type": "numeric"
+        },
+        "url_domain": {
+            "type": "string"
+        },
+        "technology_of_app": {
+            "type": "string"
+        },
+        "tunnel_sessions_closed": {
+            "type": "numeric"
+        },
+        "bytes_total": {
+            "type": "numeric"
+        },
+        "standard_ports_of_app": {
+            "type": "string"
+        },
+        "log_time": {
+            "type": "datetime"
+        },
+        "source_user_info_domain": {
+            "type": "string"
+        },
+        "authenticated_user_info": {
+            "type": "string"
+        },
+        "source_device_osversion": {
+            "type": "string"
+        },
+        "http2_connection": {
+            "type": "numeric"
+        },
+        "nssai_network_slice_type": {
+            "type": "string"
+        },
+        "packets_dropped_tunnel_frag": {
+            "type": "numeric"
+        },
+        "app_category": {
+            "type": "string"
+        },
+        "count_of_repeats": {
+            "type": "numeric"
+        },
+        "sub_type": {
+            "type": "string"
+        },
+        "is_dup_log": {
+            "type": "boolean"
+        },
+        "source_device_class": {
+            "type": "string"
+        },
+        "is_packet_capture": {
+            "type": "boolean"
+        },
+        "mobile_ip": {
+            "type": "string"
+        },
+        "is_exported": {
+            "type": "boolean"
+        },
+        "mobile_subscriber_isdn": {
+            "type": "string"
+        },
+        "dest_device_mac": {
+            "type": "string"
+        },
+        "bytes_sent": {
+            "type": "numeric"
+        },
+        "parent_start_time": {
+            "type": "string"
+        },
+        "source_device_category": {
+            "type": "string"
+        },
+        "source_user_info": {
+            "type": "string"
+        },
+        "source_device_host": {
+            "type": "string"
+        },
+        "_reporting_device_name": {
+            "type": "string"
+        },
+        "app": {
+            "type": "string"
+        },
+        "to_zone": {
+            "type": "string"
+        },
+        "_reporting_device_ip": {
+            "type": "string"
+        },
+        "packets_total": {
+            "type": "numeric"
+        },
+        "nat_dest_port": {
+            "type": "numeric"
+        },
+        "non_standard_dest_port": {
+            "type": "numeric"
+        },
+        "event_time": {
+            "type": "datetime"
+        },
+        "sdwan_FEC_ratio": {
+            "type": "float"
+        },
+        "tunnel_event_type": {
+            "type": "numeric"
+        },
+        "flags": {
+            "type": "string"
+        },
+        "protocol": {
+            "type": "string"
+        },
+        "admin_user_info": {
+            "type": "string"
+        },
+        "dg_hier_level_4": {
+            "type": "string"
+        },
+        "is_ipv6": {
+            "type": "boolean"
+        },
+        "dest_user_info_name": {
+            "type": "string"
+        },
+        "is_forwarded": {
+            "type": "boolean"
+        },
+        "rule_matched": {
+            "type": "string"
+        },
+        "policy_id": {
+            "type": "string"
+        },
+        "ha_session_owner": {
+            "type": "string"
+        },
+        "sdwan_cluster": {
+            "type": "string"
+        },
+        "time_generated_high_res": {
+            "type": "string"
+        },
+        "vsys_name": {
+            "type": "string"
+        },
+        "dest_device_class": {
+            "type": "string"
+        },
+        "total_time_elapsed": {
+            "type": "numeric"
+        },
+        "ep_assoc_id": {
+            "type": "numeric"
+        },
+        "source_user": {
+            "type": "string"
+        },
+        "content_version": {
+            "type": "string"
+        },
+        "is_decrypt_mirror": {
+            "type": "boolean"
+        },
+        "app_sub_category": {
+            "type": "string"
+        },
+        "dest_device_host": {
+            "type": "string"
+        },
+        "is_source_x_fwded": {
+            "type": "boolean"
+        },
+        "chunks_total": {
+            "type": "numeric"
+        },
+        "outbound_if_details_slot": {
+            "type": "numeric"
+        },
+        "monitor_tag_imei": {
+            "type": "string"
+        },
+        "is_phishing": {
+            "type": "boolean"
+        },
+        "dest_device_os": {
+            "type": "string"
+        },
+        "is_non_std_dest_port": {
+            "type": "boolean"
+        },
+        "is_encrypted": {
+            "type": "boolean"
+        },
+        "chunks_sent": {
+            "type": "numeric"
+        },
+        "action_source": {
+            "type": "string"
+        },
+        "source_device_osfamily": {
+            "type": "string"
+        },
+        "url_category": {
+            "type": "string"
+        },
+        "is_saas_app": {
+            "type": "boolean"
+        },
+        "is_recon_excluded": {
+            "type": "boolean"
+        },
+        "action_flags": {
+            "type": "string"
+        },
+        "tunnel_cause_code": {
+            "type": "numeric"
+        },
+        "from_zone": {
+            "type": "string"
+        },
+        "session_end_reason": {
+            "type": "string"
+        },
+        "dg_hier_level_2": {
+            "type": "string"
+        },
+        "severity": {
+            "type": "string"
+        },
+        "container_of_app": {
+            "type": "string"
+        },
+        "access_point_name": {
+            "type": "string"
+        },
+        "session_start_time": {
+            "type": "string"
+        },
+        "is_nat": {
+            "type": "boolean"
+        },
+        "dest_device_profile": {
+            "type": "string"
+        },
+        "is_l7_inspection_b4_session": {
+            "type": "boolean"
+        },
+        "__timestamp": {
+            "type": "string"
+        },
+        "mobile_area_code": {
+            "type": "numeric"
+        },
+        "inbound_if": {
+            "type": "string"
+        },
+        "dest_user_info_uuid": {
+            "type": "numeric"
+        },
+        "inbound_if_details_type": {
+            "type": "string"
+        },
+        "source_location": {
+            "type": "string"
+        },
+        "source_user_info_uuid": {
+            "type": "numeric"
+        },
+        "host_id": {
+            "type": "string"
+        },
+        "tunnel_remote_user_ip": {
+            "type": "string"
+        },
+        "dg_hier_level_1": {
+            "type": "string"
+        },
+        "is_mptcp_on": {
+            "type": "boolean"
+        },
+        "pcap_id": {
+            "type": "numeric"
+        },
+        "is_decrypted_payload_fwded": {
+            "type": "boolean"
+        },
+        "packets_received": {
+            "type": "numeric"
+        },
+        "pcap": {
+            "type": "string"
+        },
+        "nat_dest": {
+            "type": "string"
+        },
+        "dest_device_model": {
+            "type": "string"
+        },
+        "_time": {
+            "type": "datetime"
+        },
+        "dest_device_category": {
+            "type": "string"
+        },
+        "tunnel_inspection_rule": {
+            "type": "string"
+        },
+        "dg_hier_level_3": {
+            "type": "string"
+        },
+        "rule_matched_uuid": {
+            "type": "string"
+        },
+        "pod_namespace": {
+            "type": "string"
+        },
+        "domain_edl": {
+            "type": "string"
+        },
+        "dest_device_osversion": {
+            "type": "string"
+        },
+        "url_idx": {
+            "type": "numeric"
+        },
+        "dest_edl": {
+            "type": "string"
+        },
+        "chunks_received": {
+            "type": "numeric"
+        },
+        "http_method": {
+            "type": "string"
+        },
+        "dest_user": {
+            "type": "string"
+        },
+        "inbound_if_details_slot": {
+            "type": "numeric"
+        },
+        "source_uuid": {
+            "type": "string"
+        },
+        "log_set": {
+            "type": "string"
+        },
+        "sess_owner_rt_midx": {
+            "type": "boolean"
+        },
+        "session_tracker": {
+            "type": "numeric"
+        },
+        "radio_access_technology": {
+            "type": "numeric"
+        },
+        "packets_dropped_ukn_proto": {
+            "type": "numeric"
+        },
+        "outbound_if": {
+            "type": "string"
+        },
+        "container_id": {
+            "type": "string"
+        },
+        "link_switches": {
+            "type": "string"
+        },
+        "source_user_info_name": {
+            "type": "string"
+        },
+        "outbound_if_details_type": {
+            "type": "string"
+        },
+        "outbound_if_details_port": {
+            "type": "numeric"
+        },
+        "tunnel_endpoint_id_2": {
+            "type": "numeric"
+        },
+        "packets_sent": {
+            "type": "numeric"
+        },
+        "inbound_if_details": {
+            "type": "string"
+        },
+        "users": {
+            "type": "string"
+        },
+        "source_device_vendor": {
+            "type": "string"
+        }
+    },
+    "panw_ngfw_config_raw": {
+        "vsys": {
+            "type": "string"
+        },
+        "source_user_info": {
+            "type": "string"
+        },
+        "source_device_host": {
+            "type": "string"
+        },
+        "endpoint_serial_number": {
+            "type": "string"
+        },
+        "source_device_mac": {
+            "type": "string"
+        },
+        "_reporting_device_name": {
+            "type": "string"
+        },
+        "_reporting_device_ip": {
+            "type": "string"
+        },
+        "dest_user_info": {
+            "type": "string"
+        },
+        "source_device_os": {
+            "type": "string"
+        },
+        "event_time": {
+            "type": "datetime"
+        },
+        "__tz": {
+            "type": "string"
+        },
+        "source_device_vendor": {
+            "type": "string"
+        },
+        "flags": {
+            "type": "string"
+        },
+        "time_generated": {
+            "type": "datetime"
+        },
+        "partial_hash": {
+            "type": "string"
+        },
+        "source_device_model": {
+            "type": "string"
+        },
+        "log_source_tz_offset": {
+            "type": "numeric"
+        },
+        "admin_user_info": {
+            "type": "string"
+        },
+        "dg_hier_level_4": {
+            "type": "string"
+        },
+        "admin_user_info_domain": {
+            "type": "string"
+        },
+        "is_prisma_mobile": {
+            "type": "boolean"
+        },
+        "config_version": {
+            "type": "string"
+        },
+        "is_forwarded": {
+            "type": "boolean"
+        },
+        "log_type": {
+            "type": "string"
+        },
+        "sequence_no": {
+            "type": "numeric"
+        },
+        "time_generated_high_res": {
+            "type": "string"
+        },
+        "template": {
+            "type": "string"
+        },
+        "log_source_name": {
+            "type": "string"
+        },
+        "admin_user": {
+            "type": "string"
+        },
+        "vsys_name": {
+            "type": "string"
+        },
+        "source_device_profile": {
+            "type": "string"
+        },
+        "is_exported": {
+            "type": "boolean"
+        },
+        "source_user": {
+            "type": "string"
+        },
+        "source_ip": {
+            "type": "string"
+        },
+        "endpoint_events": {
+            "type": "string"
+        },
+        "event_client_ip": {
+            "type": "string"
+        },
+        "outbound_if_details": {
+            "type": "string"
+        },
+        "source_device_osfamily": {
+            "type": "string"
+        },
+        "action_flags": {
+            "type": "string"
+        },
+        "client": {
+            "type": "string"
+        },
+        "dg_hier_level_2": {
+            "type": "string"
+        },
+        "severity": {
+            "type": "string"
+        },
+        "event_path": {
+            "type": "string"
+        },
+        "__timestamp": {
+            "type": "string"
+        },
+        "platform_type": {
+            "type": "string"
+        },
+        "characteristics_of_app": {
+            "type": "string"
+        },
+        "source_user_info_uuid": {
+            "type": "numeric"
+        },
+        "dg_hier_level_1": {
+            "type": "string"
+        },
+        "event_name": {
+            "type": "string"
+        },
+        "threat_name_firewall": {
+            "type": "string"
+        },
+        "traffic_flags": {
+            "type": "string"
+        },
+        "_time": {
+            "type": "datetime"
+        },
+        "dg_hier_level_3": {
+            "type": "string"
+        },
+        "is_prisma_branch": {
+            "type": "boolean"
+        },
+        "vsys_id": {
+            "type": "numeric"
+        },
+        "vendor_severity": {
+            "type": "string"
+        },
+        "event_result": {
+            "type": "string"
+        },
+        "domain_edl": {
+            "type": "string"
+        },
+        "log_source_group_id": {
+            "type": "string"
+        },
+        "log_time": {
+            "type": "datetime"
+        },
+        "event_description": {
+            "type": "string"
+        },
+        "admin_user_info_uuid": {
+            "type": "numeric"
+        },
+        "source_user_info_domain": {
+            "type": "string"
+        },
+        "authenticated_user_info": {
+            "type": "string"
+        },
+        "source_device_osversion": {
+            "type": "string"
+        },
+        "event_detail": {
+            "type": "string"
+        },
+        "source_user_info_name": {
+            "type": "string"
+        },
+        "count_of_repeats": {
+            "type": "numeric"
+        },
+        "sub_type": {
+            "type": "string"
+        },
+        "is_dup_log": {
+            "type": "boolean"
+        },
+        "inbound_if_details": {
+            "type": "string"
+        },
+        "source_device_class": {
+            "type": "string"
+        },
+        "admin_user_info_name": {
+            "type": "string"
+        },
+        "device_group": {
+            "type": "string"
+        },
+        "source_device_category": {
+            "type": "string"
+        }
+    }
+}

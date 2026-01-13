@@ -1,0 +1,193 @@
+[MODEL: dataset=panw_ngfw_hipmatch_raw]
+alter
+    _os_family = arrayindex(split(endpoint_os_type), 0),
+    _host_mac_address = if(host_id = null, source_device_mac, if(host_id contains ":", host_id))
+| alter
+    xdm.event.id = to_string(sequence_no),
+    xdm.event.original_event_type = "hipmatch",
+    xdm.target.application.name = sub_type,
+    xdm.event.type = hip_match_name,
+    xdm.observer.name = log_source_name,
+    xdm.observer.type = log_source,
+    xdm.observer.unique_identifier = log_source_id,
+    xdm.source.application.version = config_version,
+    xdm.source.host.device_id = coalesce(host_id, source_device_mac),
+    xdm.source.host.hostname = endpoint_device_name,
+    xdm.source.host.mac_addresses = if(_host_mac_address != null, arraycreate(_host_mac_address)),
+    xdm.source.host.os = endpoint_os_type,
+    xdm.source.host.os_family = if(_os_family="windows", XDM_CONST.OS_FAMILY_WINDOWS , _os_family in ("macos", "mac"), XDM_CONST.OS_FAMILY_MACOS, _os_family in ("ios", "iOS"), XDM_CONST.OS_FAMILY_IOS, _os_family="chromeos", XDM_CONST.OS_FAMILY_CHROMEOS, _os_family="linux", XDM_CONST.OS_FAMILY_LINUX, _os_family="android", XDM_CONST.OS_FAMILY_ANDROID, _os_family),
+    xdm.source.host.hardware_uuid = endpoint_serial_number,
+    xdm.source.ipv4 = source_ip,
+    xdm.source.ipv6 = if(source_ip_v6 contains ":", source_ip_v6),
+    xdm.source.user.domain = source_user_info_domain,
+    xdm.source.user.username = source_user_info_name;
+
+[MODEL: dataset=panw_ngfw_globalprotect_raw]
+alter
+    _empty_ip = "00000000000000000000ffff00000000"
+| alter
+    xdm.auth.auth_method = auth_method,
+    xdm.event.description = event_id,
+    xdm.event.duration = to_number(multiply(login_duration, 1000)),
+    xdm.event.id = to_string(sequence_no),
+    xdm.event.outcome = if(status="success", XDM_CONST.OUTCOME_SUCCESS, status="failure", XDM_CONST.OUTCOME_FAILED, XDM_CONST.OUTCOME_UNKNOWN),
+    xdm.event.outcome_reason = connection_error,
+    xdm.event.tags = arraycreate("VPN"),
+    xdm.event.operation = stage,
+    xdm.event.original_event_type = "globalprotect",
+    xdm.network.vpn.allocated_ipv4 = if(private_ip != _empty_ip, private_ip),
+    xdm.network.vpn.allocated_ipv6 = if (private_ipv6 != _empty_ip, private_ipv6),
+    xdm.observer.name = log_source_name,
+    xdm.observer.type = log_source,
+    xdm.observer.unique_identifier = log_source_id,
+    xdm.source.application.version = to_string(endpoint_gp_version),
+    xdm.source.host.device_id = host_id,
+    xdm.source.host.hardware_uuid = host_id,
+    xdm.source.host.mac_addresses = if(host_id contains ":", arraycreate(host_id)),
+    xdm.source.host.hostname = endpoint_device_name,
+    xdm.source.host.os = endpoint_os_version,
+    xdm.source.host.os_family = if(endpoint_os_type="Windows", XDM_CONST.OS_FAMILY_WINDOWS , endpoint_os_type in ("macOS", "Mac"), XDM_CONST.OS_FAMILY_MACOS, endpoint_os_type="Linux", XDM_CONST.OS_FAMILY_LINUX, uppercase(endpoint_os_version)),
+    xdm.source.ipv4 = if(public_ip != _empty_ip, public_ip),
+    xdm.source.ipv6 = if(public_ipv6 != _empty_ip, public_ipv6),
+    xdm.source.location.country = if(len(source_region)=2, source_region),
+    xdm.source.user.domain = source_user_info_domain,
+    xdm.source.user.username = source_user,
+    xdm.target.application.name = "GlobalProtect",
+    xdm.target.host.hostname = gateway;
+
+[RULE: ngfw_standalone]
+alter
+    _empty_ip = "00000000000000000000ffff00000000",
+    _is_nat = to_boolean(is_nat),
+    _is_proxy = to_boolean(is_proxy),
+    _source_port = to_integer(source_port),
+    _dest_port = to_integer(dest_port),
+    _is_dest_ipv6 = if(dest_ip contains ":"),
+    _is_source_ipv6 = if(source_ip contains ":"),
+    _session_id = to_string(session_id)
+| alter
+    xdm.event.id = _session_id,
+    xdm.event.operation_sub_type = sub_type,
+    xdm.event.type = log_type,
+    xdm.intermediate.ipv4 = if(_is_proxy = True and _is_dest_ipv6 = False and dest_ip != _empty_ip, dest_ip),
+    xdm.intermediate.ipv6 = if(_is_proxy = True and _is_dest_ipv6 = True, dest_ip),
+    xdm.intermediate.is_nat = _is_nat,
+    xdm.intermediate.is_proxy = _is_proxy,
+    xdm.intermediate.port = if(_is_proxy = True, _dest_port),
+    xdm.network.application_protocol = app,
+    xdm.network.application_protocol_category = app_category,
+    xdm.network.application_protocol_subcategory = app_sub_category,
+    xdm.network.ip_protocol = if(protocol="icmp", XDM_CONST.IP_PROTOCOL_ICMP, protocol="tcp", XDM_CONST.IP_PROTOCOL_TCP, protocol="udp", XDM_CONST.IP_PROTOCOL_UDP, protocol),
+    xdm.network.rule = rule_matched,
+    xdm.observer.action = action,
+    xdm.observer.name = log_source_name,
+    xdm.observer.type = log_source,
+    xdm.observer.unique_identifier = log_source_id,
+    xdm.session_context_id = _session_id,
+    xdm.source.host.hostname = if(source_device_host not contains ":", source_device_host),
+    xdm.source.host.device_category = source_device_category,
+    xdm.source.host.device_id = source_device_mac,
+    xdm.source.host.device_model = source_device_model,
+    xdm.source.host.mac_addresses = if(source_device_mac != null, arraycreate(source_device_mac)),
+    xdm.source.host.manufacturer = source_device_vendor,
+    xdm.source.host.os = source_device_os,
+    xdm.source.host.os_family = if(source_device_osfamily="Windows", XDM_CONST.OS_FAMILY_WINDOWS , source_device_osfamily in ("MacOS", "Mac"), XDM_CONST.OS_FAMILY_MACOS, source_device_osfamily in ("ios", "iOS"), XDM_CONST.OS_FAMILY_IOS, source_device_osfamily="Chromeos", XDM_CONST.OS_FAMILY_CHROMEOS, source_device_osfamily="Linux", XDM_CONST.OS_FAMILY_LINUX, source_device_osfamily="Android", XDM_CONST.OS_FAMILY_ANDROID, source_device_osfamily),
+    xdm.source.interface = inbound_if,
+    xdm.source.ipv4 = if(_is_source_ipv6 = False and source_ip != _empty_ip, source_ip),
+    xdm.source.ipv6 = if(_is_source_ipv6 = True, source_ip),
+    xdm.source.port = _source_port,
+    xdm.source.user.username = source_user,
+    xdm.source.zone = from_zone,
+    xdm.target.host.hostname = if(dest_device_host not contains ":", dest_device_host),
+    xdm.target.host.device_category = dest_device_category,
+    xdm.target.host.device_id = dest_device_mac,
+    xdm.target.host.device_model = dest_device_model,
+    xdm.target.host.mac_addresses = if(dest_device_mac != null, arraycreate(dest_device_mac)),
+    xdm.target.host.manufacturer = dest_device_vendor,
+    xdm.target.host.os = dest_device_os,
+    xdm.target.host.os_family = if(dest_device_osfamily="Windows", XDM_CONST.OS_FAMILY_WINDOWS , dest_device_osfamily in ("MacOS", "Mac"), XDM_CONST.OS_FAMILY_MACOS, dest_device_osfamily in ("ios", "iOS"), XDM_CONST.OS_FAMILY_IOS, dest_device_osfamily="Chromeos", XDM_CONST.OS_FAMILY_CHROMEOS, dest_device_osfamily="Linux", XDM_CONST.OS_FAMILY_LINUX, dest_device_osfamily="Android", XDM_CONST.OS_FAMILY_ANDROID, dest_device_osfamily),
+    xdm.target.interface = outbound_if,
+    xdm.target.ipv4 = if(_is_dest_ipv6 = False and dest_ip != _empty_ip, dest_ip),
+    xdm.target.ipv6 = if(_is_dest_ipv6 = True, dest_ip),
+    xdm.target.port = _dest_port,
+    xdm.target.user.username = dest_user,
+    xdm.target.zone = to_zone;
+
+[RULE: url_threat_common_fields]
+alter
+    xdm.network.http.method = if(http_method = "get", XDM_CONST.HTTP_METHOD_GET, http_method = "post", XDM_CONST.HTTP_METHOD_POST, http_method = "connect", XDM_CONST.HTTP_METHOD_CONNECT, http_method = "head", XDM_CONST.HTTP_METHOD_HEAD, http_method = "put", XDM_CONST.HTTP_METHOD_PUT, http_method = "delete", XDM_CONST.HTTP_METHOD_DELETE, http_method = "options", XDM_CONST.HTTP_METHOD_OPTIONS, http_method);
+
+[MODEL:dataset="panw_ngfw_traffic_raw"]
+call ngfw_standalone
+| alter
+    _bytes_sent = to_integer(bytes_sent),
+    _packets_sent = to_integer(packets_sent),
+    _bytes_received = to_integer(bytes_received),
+    _packets_received = to_integer(packets_received),
+    _total_time_elapsed = to_integer(multiply(total_time_elapsed, 1000))
+| alter
+    xdm.source.sent_bytes = _bytes_sent,
+    xdm.source.sent_packets = _packets_sent,
+    xdm.target.sent_bytes = _bytes_received,
+    xdm.target.sent_packets = _packets_received,
+    xdm.event.original_event_type = "traffic",
+    xdm.event.outcome = if(sub_type in ("drop", "deny"), XDM_CONST.OUTCOME_FAILED),
+    xdm.event.duration = _total_time_elapsed;
+
+[MODEL:dataset="panw_ngfw_filedata_raw"]
+call ngfw_standalone
+| alter
+    xdm.alert.severity = vendor_severity,
+    xdm.event.original_event_type = "file_data",
+    xdm.network.http.url_category = url_category,
+    xdm.observer.content_version = content_version,
+    xdm.source.host.hardware_uuid = source_uuid,
+    xdm.source.process.container_id = container_id,
+    xdm.target.file.file_type = file_type,
+    xdm.target.file.filename = file_name,
+    xdm.target.file.extension = if(file_name contains ".", arrayindex(split(file_name, "."), -1)),
+    xdm.target.file.path = file_url,
+    xdm.target.file.sha256 = file_sha_256,
+    xdm.target.host.hardware_uuid = dest_uuid;
+
+[MODEL:dataset="panw_ngfw_threat_raw"]
+call ngfw_standalone
+| call url_threat_common_fields
+| alter
+        threat_category_lower = lowercase(threat_category)
+| alter
+    xdm.event.original_event_type = "threat",
+    //xdm.network.http.url_category = url_category,
+    xdm.network.http.url = if(file_sha_256 = null, file_name),
+    xdm.source.host.fqdn = url_domain,
+    xdm.target.file.filename = if(file_sha_256 != null, file_name),
+    xdm.target.file.file_type = file_type,
+    xdm.target.file.sha256 = file_sha_256,
+    xdm.email.subject = subject_of_email,
+    xdm.alert.original_threat_id = to_string(threat_id),
+    xdm.alert.original_threat_name = threat_name,
+    xdm.alert.category = if(threat_category_lower = "apk", XDM_CONST.THREAT_CATEGORY_APK, threat_category_lower = "dmg", XDM_CONST.THREAT_CATEGORY_DMG, threat_category_lower = "flash", XDM_CONST.THREAT_CATEGORY_FLASH, threat_category_lower = "java-class", XDM_CONST.THREAT_CATEGORY_JAVA_CLASS, threat_category_lower = "macho", XDM_CONST.THREAT_CATEGORY_MACHO, threat_category_lower = "office", XDM_CONST.THREAT_CATEGORY_OFFICE, threat_category_lower = "openoffice", XDM_CONST.THREAT_CATEGORY_OPENOFFICE, threat_category_lower = "pdf", XDM_CONST.THREAT_CATEGORY_PDF, threat_category_lower = "pe", XDM_CONST.THREAT_CATEGORY_PE, threat_category_lower = "pkg", XDM_CONST.THREAT_CATEGORY_PKG, threat_category_lower = "adware", XDM_CONST.THREAT_CATEGORY_ADWARE, threat_category_lower = "autogen", XDM_CONST.THREAT_CATEGORY_AUTOGEN, threat_category_lower = "backdoor", XDM_CONST.THREAT_CATEGORY_BACKDOOR, threat_category_lower = "botnet", XDM_CONST.THREAT_CATEGORY_BOTNET, threat_category_lower = "browser-hijack", XDM_CONST.THREAT_CATEGORY_BROWSER_HIJACK, threat_category_lower = "cryptominer", XDM_CONST.THREAT_CATEGORY_CRYPTOMINER, threat_category_lower = "data-theft", XDM_CONST.THREAT_CATEGORY_DATA_THEFT, threat_category_lower = "dns", XDM_CONST.THREAT_CATEGORY_DNS, threat_category_lower = "dns-security", XDM_CONST.THREAT_CATEGORY_DNS_SECURITY, threat_category_lower = "dns-wildfire", XDM_CONST.THREAT_CATEGORY_DNS_WILDFIRE, threat_category_lower = "downloader", XDM_CONST.THREAT_CATEGORY_DOWNLOADER, threat_category_lower = "fraud", XDM_CONST.THREAT_CATEGORY_FRAUD, threat_category_lower = "hacktool", XDM_CONST.THREAT_CATEGORY_HACKTOOL, threat_category_lower = "keylogger", XDM_CONST.THREAT_CATEGORY_KEYLOGGER, threat_category_lower = "networm", XDM_CONST.THREAT_CATEGORY_NETWORM, threat_category_lower = "phishing-kit", XDM_CONST.THREAT_CATEGORY_PHISHING_KIT, threat_category_lower = "post-exploitation", XDM_CONST.THREAT_CATEGORY_POST_EXPLOITATION, threat_category_lower = "webshell", XDM_CONST.THREAT_CATEGORY_WEBSHELL, threat_category_lower = "spyware", XDM_CONST.THREAT_CATEGORY_SPYWARE, threat_category_lower = "brute force", XDM_CONST.THREAT_CATEGORY_BRUTE_FORCE, threat_category_lower = "code execution", XDM_CONST.THREAT_CATEGORY_CODE_EXECUTION, threat_category_lower = "code-obfuscation", XDM_CONST.THREAT_CATEGORY_CODE_OBFUSCATION, threat_category_lower = "dos", XDM_CONST.THREAT_CATEGORY_DOS, threat_category_lower = "exploit-kit", XDM_CONST.THREAT_CATEGORY_EXPLOIT_KIT, threat_category_lower = "info-leak", XDM_CONST.THREAT_CATEGORY_INFO_LEAK, threat_category_lower = "insecure-credentials", XDM_CONST.THREAT_CATEGORY_INSECURE_CREDENTIALS, threat_category_lower = "overflow", XDM_CONST.THREAT_CATEGORY_OVERFLOW, threat_category_lower = "phishing", XDM_CONST.THREAT_CATEGORY_PHISHING, threat_category_lower = "protocol-anomaly", XDM_CONST.THREAT_CATEGORY_PROTOCOL_ANOMALY, threat_category_lower = "sql-injection", XDM_CONST.THREAT_CATEGORY_SQL_INJECTION, to_string(threat_category)),
+    xdm.alert.severity = severity,
+    xdm.alert.description = verdict;
+
+[MODEL:dataset="panw_ngfw_url_raw"]
+call ngfw_standalone
+| call url_threat_common_fields
+| alter
+    xdm.event.original_event_type = "url",
+    xdm.network.http.url = uri,
+    xdm.network.http.url_category = url_category,
+    xdm.network.http.content_type = content_type,
+    xdm.source.user_agent = user_agent,
+    xdm.network.http.referrer = referer,
+    xdm.network.http.domain = url_domain,
+    xdm.event.outcome = if(action = "allow", XDM_CONST.OUTCOME_SUCCESS,
+						action = "alert", XDM_CONST.OUTCOME_SUCCESS,
+						action = "block-url", XDM_CONST.OUTCOME_FAILED,
+						action = "block-continue", XDM_CONST.OUTCOME_PARTIAL,
+						action = "continue", XDM_CONST.OUTCOME_SUCCESS,
+						action = "block-override", XDM_CONST.OUTCOME_PARTIAL,
+						action = "override-lockout", XDM_CONST.OUTCOME_PARTIAL,
+						action = "override", XDM_CONST.OUTCOME_SUCCESS),
+    xdm.event.outcome_reason = action;
+

@@ -23,8 +23,8 @@ filter _raw_log ~= "\*\*NF\*\*"
 
 call get_hostname_rule 
 |filter parsed_fields_get_headers -> hostname = "reblazer"
-|call key_value_format_logs;
+| call key_value_format_logs;
 
-call get_hostname_rule 
+call get_hostname_rule
 |filter parsed_fields_get_headers -> hostname != "reblazer"
-|call values_format_logs ;
+| call values_format_logs ;

@@ -1,0 +1,469 @@
+/* -------------------------------
+   ----------- RULES -------------
+   ------------------------------- */
+
+[RULE:extract_common_ngfw_fields]
+alter log_source_name = coalesce(json_extract_scalar(log_source_name, "$.string"), log_source_name),
+      log_source_tz_offset = to_integer(json_extract_scalar(log_source_tz_offset, "$.int")),
+      log_type = json_extract_scalar(log_type, "$.value.string"),
+      sub_type = json_extract_scalar(sub_type, "$.value.string"),
+      source_ip = json_extract_scalar(source_ip, "$.value"),
+      is_exported = to_boolean(json_extract_scalar(is_exported, "$.boolean")),
+      is_forwarded = to_boolean(json_extract_scalar(is_forwarded, "$.boolean")),
+      is_dup_log = to_boolean(json_extract_scalar(is_dup_log, "$.boolean")),
+      is_prisma_branch = to_boolean(json_extract_scalar(is_prisma_branch, "$.boolean")),
+      is_prisma_mobile = to_boolean(json_extract_scalar(is_prisma_mobile, "$.boolean")),
+      count_of_repeats = to_integer(json_extract_scalar(count_of_repeats, "$.int")),
+      sequence_no = to_integer(json_extract_scalar(sequence_no, "$.long")),
+      source_user = json_extract_scalar(source_user, "$.string"),
+      source_user_info_domain = json_extract_scalar(source_user_info, "$.user_info.domain.string"),
+      source_user_info_name = json_extract_scalar(source_user_info, "$.user_info.name.string"),
+      source_user_info_uuid = to_integer(json_extract_scalar(source_user_info, "$.user_info.uuid.long")),
+      vsys_id = to_integer(json_extract_scalar(vsys_id, "$.int")),
+      vsys = json_extract_scalar(vsys, "$.string"),
+      vsys_name = json_extract_scalar(vsys_name, "$.string"),
+      config_version = json_extract_scalar(config_version, "$.enumeration.value.string"),
+      source_device_category = json_extract_scalar(source_device_category, "$.string"),
+      source_device_profile = json_extract_scalar(source_device_profile, "$.string"),
+      source_device_host = json_extract_scalar(source_device_host, "$.string"),
+      source_device_class = json_extract_scalar(source_device_class, "$.string"),
+      source_device_vendor = json_extract_scalar(source_device_vendor, "$.string"),
+      source_device_model = json_extract_scalar(source_device_model, "$.string"),
+      source_device_os = json_extract_scalar(source_device_os, "$.string"),
+      source_device_osfamily = json_extract_scalar(source_device_osfamily, "$.string"),
+      source_device_osversion = json_extract_scalar(source_device_osversion, "$.string"),
+      source_device_mac = json_extract_scalar(source_device_mac, "$.string"),
+      time_generated_high_res = json_extract_scalar(time_generated_high_res, "$.string"),
+      endpoint_serial_number = json_extract_scalar(endpoint_serial_number, "$.string")
+| alter
+      _reporting_device_name = log_source_name,
+      _reporting_device_ip = null;
+      
+
+      /* Automatically expanded:
+            vendor_name,
+            log_source,
+            log_source_id,
+            customer_id,
+            // log_time // temp workaround for this due to CRTX-80072
+      */
+
+[RULE:extract_common_threat_traffic_url_filedata_fields]
+alter risk_of_app = to_integer(json_extract_scalar(risk_of_app, "$.int"))
+| alter risk_of_app = if(risk_of_app = 1, "Informational",
+                         risk_of_app = 2, "Low",
+                         risk_of_app = 3, "Medium",
+                         risk_of_app = 4, "High",
+                         risk_of_app = 5, "Critical",
+                         "Unknown"),
+        dest_ip = json_extract_scalar(dest_ip, "$.value"),
+        protocol = json_extract_scalar(protocol, "$.value.string"),
+        action = json_extract_scalar(action, "$.enumeration.value.string"),
+        app = json_extract_scalar(app, "$.string"),
+        app_category = json_extract_scalar(app_category, "$.string"),
+        container_of_app = json_extract_scalar(container_of_app, "$.string"),
+        dest_uuid = json_extract_scalar(dest_uuid, "$.string"),
+        dest_location = json_extract_scalar(dest_location, "$.string"),
+        dest_user = json_extract_scalar(dest_user, "$.string"),
+        dest_user_info_domain = json_extract_scalar(dest_user_info, "$.user_info.domain.string"),
+        dest_user_info_name = json_extract_scalar(dest_user_info, "$.user_info.name.string"),
+        dest_user_info_uuid = to_integer(json_extract_scalar(dest_user_info, "$.user_info.uuid.long")),
+        from_zone = json_extract_scalar(from_zone, "$.string"),
+        http2_connection = to_integer(json_extract_scalar(http2_connection, "$.int")),
+        inbound_if = json_extract_scalar(inbound_if, "$.interface.value"),
+        inbound_if_details_unit = to_integer(json_extract_scalar(inbound_if_details, "$.interface_details.unit.int")),
+        inbound_if_details_type = json_extract_scalar(inbound_if_details, "$.interface_details.type.enumeration.value.string"),
+        inbound_if_details_slot = to_integer(json_extract_scalar(inbound_if_details, "$.interface_details.slot.int")),
+        inbound_if_details_port = to_integer(json_extract_scalar(inbound_if_details, "$.interface_details.port.int")),
+        is_saas_app = to_boolean(json_extract_scalar(is_saas_app, "$.boolean")),
+        log_set = json_extract_scalar(log_set, "$.string"),
+        monitor_tag_imei = json_extract_scalar(monitor_tag_imei, "$.string"),
+        nat_dest_port = to_integer(json_extract_scalar(nat_dest_port, "$.int")),
+        nat_dest = if(json_extract_scalar(nat_dest, "$.ip_address.value") != "",
+                      json_extract_scalar(nat_dest, "$.ip_address.value"),
+                      json_extract_scalar(nat_dest, "$.ip_address.hex")),
+        nat_source_port = to_integer(json_extract_scalar(nat_source_port, "$.int")),
+        nat_source = if(json_extract_scalar(nat_source, "$.ip_address.value") != "",
+                      json_extract_scalar(nat_source, "$.ip_address.value"),
+                      json_extract_scalar(nat_source, "$.ip_address.hex")),
+        non_standard_dest_port = to_integer(json_extract_scalar(non_standard_dest_port, "$.int")),
+        outbound_if = json_extract_scalar(outbound_if, "$.interface.value"),
+        outbound_if_details_unit = to_integer(json_extract_scalar(outbound_if_details, "$.interface_details.unit.int")),
+        outbound_if_details_type = json_extract_scalar(outbound_if_details, "$.interface_details.type.enumeration.value.string"),
+        outbound_if_details_slot = to_integer(json_extract_scalar(outbound_if_details, "$.interface_details.slot.int")),
+        outbound_if_details_port = to_integer(json_extract_scalar(outbound_if_details, "$.interface_details.port.int")),
+        parent_session_id = to_integer(json_extract_scalar(parent_session_id, "$.int")),
+        parent_start_time = json_extract_scalar(parent_start_time, "$.string"),
+        rule_matched = json_extract_scalar(rule_matched, "$.string"),
+        rule_matched_uuid = json_extract_scalar(rule_matched_uuid, "$.string"),
+        sanctioned_state_of_app = to_boolean(json_extract_scalar(sanctioned_state_of_app, "$.boolean")),
+        session_id = to_integer(json_extract_scalar(session_id, "$.int")),
+        source_uuid = json_extract_scalar(source_uuid, "$.string"),
+        source_location = json_extract_scalar(source_location, "$.string"),
+        app_sub_category = json_extract_scalar(app_sub_category, "$.string"),
+        technology_of_app = json_extract_scalar(technology_of_app, "$.string"),
+        to_zone = json_extract_scalar(to_zone, "$.string"),
+        tunnel = json_extract_scalar(tunnel, "$.enumeration.value.string"),
+        tunneled_app = json_extract_scalar(tunneled_app, "$.string"),
+        tunnelid_imsi = to_integer(json_extract_scalar(tunnelid_imsi, "$.long")),
+        users = json_extract_scalar(users, "$.string"),
+        is_decrypt_mirror = to_boolean(json_extract_scalar(is_decrypt_mirror, "$.boolean")),
+        is_sym_return = to_boolean(json_extract_scalar(is_sym_return, "$.boolean")),
+        is_container = to_boolean(json_extract_scalar(is_container, "$.boolean")),
+        is_server_to_client = to_boolean(json_extract_scalar(is_server_to_client, "$.boolean")),
+        is_client_to_server = to_boolean(json_extract_scalar(is_client_to_server, "$.boolean")),
+        is_transaction = to_boolean(json_extract_scalar(is_transaction, "$.boolean")),
+        is_non_std_dest_port = to_boolean(json_extract_scalar(is_non_std_dest_port, "$.boolean")),
+        is_captive_portal = to_boolean(json_extract_scalar(is_captive_portal, "$.boolean")),
+        is_nat = to_boolean(json_extract_scalar(is_nat, "$.boolean")),
+        is_proxy = to_boolean(json_extract_scalar(is_proxy, "$.boolean")),
+        is_packet_capture = to_boolean(json_extract_scalar(is_packet_capture, "$.boolean")),
+        is_phishing = to_boolean(json_extract_scalar(is_phishing, "$.boolean")),
+        is_mptcp_on = to_boolean(json_extract_scalar(is_mptcp_on, "$.boolean")),
+        is_recon_excluded = to_boolean(json_extract_scalar(is_recon_excluded, "$.boolean")),
+        is_url_denied = to_boolean(json_extract_scalar(is_url_denied, "$.boolean")),
+        is_tunnel_inspected = to_boolean(json_extract_scalar(is_tunnel_inspected, "$.boolean")),
+        is_source_x_fwded = to_boolean(json_extract_scalar(is_source_x_fwded, "$.boolean")),
+        is_ipv6 = to_boolean(json_extract_scalar(is_ipv6, "$.boolean")),
+        container_id = json_extract_scalar(container_id, "$.string"),
+        pod_namespace = json_extract_scalar(pod_namespace, "$.string"),
+        pod_name = json_extract_scalar(pod_name, "$.string"),
+        dest_device_category = json_extract_scalar(dest_device_category, "$.string"),
+        dest_device_profile = json_extract_scalar(dest_device_profile, "$.string"),
+        dest_device_host = json_extract_scalar(dest_device_host, "$.string"),
+        dest_device_class = json_extract_scalar(dest_device_class, "$.string"),
+        dest_device_vendor = json_extract_scalar(dest_device_vendor, "$.string"),
+        dest_device_model = json_extract_scalar(dest_device_model, "$.string"),
+        dest_device_os = json_extract_scalar(dest_device_os, "$.string"),
+        dest_device_osfamily = json_extract_scalar(dest_device_osfamily, "$.string"),
+        dest_device_osversion = json_extract_scalar(dest_device_osversion, "$.string"),
+        dest_device_mac = json_extract_scalar(dest_device_mac, "$.string"),
+        dynusergroup_name = json_extract_scalar(dynusergroup_name, "$.string"),
+        nssai_network_slice_type = json_extract_scalar(nssai_network_slice_type, "$.enumeration.value.string"),
+        xff_ip = if(json_extract_scalar(xff_ip, "$.ip_address.value") != "",
+                    json_extract_scalar(xff_ip, "$.ip_address.value"),
+                    json_extract_scalar(xff_ip, "$.ip_address.hex")),
+        is_decrypted = to_boolean(json_extract_scalar(is_decrypted, "$.boolean")),
+        is_encrypted = to_boolean(json_extract_scalar(is_encrypted, "$.boolean")),
+        source_edl = json_extract_scalar(source_edl, "$.string"),
+        dest_edl = json_extract_scalar(dest_edl, "$.string"),
+        source_dynamic_address_group = json_extract_scalar(source_dynamic_address_group, "$.string"),
+        dest_dynamic_address_group = json_extract_scalar(dest_dynamic_address_group, "$.string");
+
+        /* Automatically expanded:
+              source_port,
+              dest_port
+        */
+
+[RULE:extract_threat_url_common_fields]
+alter cloud_hostname = json_extract_scalar(cloud_hostname, "$.string"),
+      direction_of_attack = json_extract_scalar(direction_of_attack, "$.enumeration.value.string"),
+      url_category = json_extract_scalar(url_category, "$.enumeration.value.string"),
+      url_domain = json_extract_scalar(url_domain, "$.string"),
+      url_idx = to_integer(json_extract_scalar(url_idx, "$.int")),
+      vendor_severity = json_extract_scalar(vendor_severity, "$.value.string"),
+      severity = coalesce(json_extract_scalar(severity, "$.severity"), json_extract_scalar(severity, "$['firewall.severity']")),
+      pcap = json_extract_scalar(pcap, "$.string"),
+      pcap_id = to_integer(json_extract_scalar(pcap_id, "$.long")),
+      sig_flags = to_integer(json_extract_scalar(sig_flags, "$.int")),
+      content_version = json_extract_scalar(content_version, "$.string"),
+      http_method = json_extract_scalar(http_method, "$.enumeration.value.string");
+
+[RULE:extract_hipmatch_only_fields]
+alter endpoint_device_name = json_extract_scalar(endpoint_device_name, "$.string"),
+      hip_match_name = json_extract_scalar(hip_match_name, "$.string"),
+      hip_match_type = json_extract_scalar(hip_match_type, "$.enumeration.value.string"),
+      endpoint_os_type = json_extract_scalar(endpoint_os_type, "$.string"),
+      host_id = json_extract_scalar(host_id, "$.string"),
+      source_ip_v6 = if(json_extract_scalar(source_ip_v6, "$.ip_address.value") != "",
+                        json_extract_scalar(source_ip_v6, "$.ip_address.value"),
+                        json_extract_scalar(source_ip_v6, "$.ip_address.hex")),
+      source = json_extract_scalar(source, "$.string"),
+      timestamp_device_identification = json_extract_scalar(timestamp_device_identification, "$.string"),
+      uuid = json_extract_scalar(uuid, "$.string");
+
+[RULE:extract_threat_only_fields]
+alter threat_id = to_integer(json_extract_scalar(threat_id, "$.long")),
+      threat_name = json_extract_scalar(threat_name, "$.string"),
+      threat_category = json_extract_scalar(threat_category, "$.enumeration.value.string"),
+      file_name = json_extract_scalar(file_name, "$.string"),
+      cloud = json_extract_scalar(cloud, "$.string"),
+      file_sha_256 = json_extract_scalar(file_sha_256, "$.string"),
+      file_type = json_extract_scalar(file_type, "$.string"),
+      sender_of_virus = json_extract_scalar(sender_of_virus, "$.string"),
+      recipient_of_virus = json_extract_scalar(recipient_of_virus, "$.string"),
+      subject_of_email = json_extract_scalar(subject_of_email, "$.string"),
+      report_id = to_integer(json_extract_scalar(report_id, "$.long")),
+      verdict = json_extract_scalar(verdict, "$.enumeration.value.string"),
+      threat_name_firewall = json_extract_scalar(threat_name_firewall, "$.string"),
+      domain_edl = json_extract_scalar(domain_edl, "$.string"),
+      partial_hash = to_integer(json_extract_scalar(partial_hash, "$.long")),
+      host_id = json_extract_scalar(host_id, "$.string"),
+      payload_protocol_id = to_integer(json_extract_scalar(payload_protocol_id, "$.int"));
+
+[RULE:extract_traffic_only_fields]
+alter action_source = json_extract_scalar(action_source, "$.enumeration.value.string"),
+      bytes_total = to_integer(json_extract_scalar(bytes_total, "$.long")),
+      bytes_received = to_integer(json_extract_scalar(bytes_received, "$.long")),
+      bytes_sent = to_integer(json_extract_scalar(bytes_sent, "$.long")),
+      ep_assoc_id = to_integer(json_extract_scalar(ep_assoc_id, "$.long")),
+      chunks_total = to_integer(json_extract_scalar(chunks_total, "$.int")),
+      chunks_received = to_integer(json_extract_scalar(chunks_received, "$.int")),
+      chunks_sent = to_integer(json_extract_scalar(chunks_sent, "$.int")),
+      packets_total = to_integer(json_extract_scalar(packets_total, "$.int")),
+      packets_received = to_integer(json_extract_scalar(packets_received, "$.int")),
+      packets_sent = to_integer(json_extract_scalar(packets_sent, "$.int")),
+      session_start_time = json_extract_scalar(session_start_time, "$.string"),
+      total_time_elapsed = to_integer(json_extract_scalar(total_time_elapsed, "$.int")),
+      session_end_reason = json_extract_scalar(session_end_reason, "$.enumeration.value.string"),
+      url_category = json_extract_scalar(url_category, "$.enumeration.value.string"),
+      is_decrypted_payload_fwded = to_boolean(json_extract_scalar(is_decrypted_payload_fwded, "$.boolean")),
+      is_decryption_log = to_boolean(json_extract_scalar(is_decryption_log, "$.boolean")),
+      is_l7_inspection_b4_session = to_boolean(json_extract_scalar(is_l7_inspection_b4_session, "$.boolean")),
+      sess_owner_rt_midx = to_boolean(json_extract_scalar(sess_owner_rt_midx, "$.boolean")),
+      session_tracker = to_integer(json_extract_scalar(session_tracker, "$.int")),
+      link_change_count = to_integer(json_extract_scalar(link_change_count, "$.int")),
+      policy_id = json_extract_scalar(policy_id, "$.string"),
+      link_switches = json_extract_scalar(link_switches, "$.string"),
+      sdwan_cluster = json_extract_scalar(sdwan_cluster, "$.string"),
+      sdwan_device_type = json_extract_scalar(sdwan_device_type, "$.string"),
+      sdwan_cluster_type = json_extract_scalar(sdwan_cluster_type, "$.string"),
+      sdwan_site = json_extract_scalar(sdwan_site, "$.string"),
+      ha_session_owner = json_extract_scalar(ha_session_owner, "$.string"),
+      sdwan_FEC_ratio = to_float(json_extract_scalar(sdwan_FEC_ratio, "$.float")),
+      host_id = json_extract_scalar(host_id, "$.string"),
+      nssai_network_slice_differentiator = json_extract_scalar(nssai_network_slice_differentiator, "$.enumeration.value.string");
+
+[RULE:extract_url_only_fields]
+alter inline_ml_verdict = json_extract_scalar(inline_ml_verdict, "$.enumeration.value.string"),
+      content_type = json_extract_scalar(content_type, "$.string"),
+      http_headers = json_extract_scalar(http_headers, "$.string"),
+      uri = json_extract_scalar(uri, "$.string"),
+      url_category_list = json_extract_scalar(url_category_list, "$.string"),
+      referer = json_extract_scalar(referer, "$.string"),
+      referer_protocol = json_extract_scalar(referer_protocol, "$.enumeration.value.string"),
+      referer_port = to_integer(json_extract_scalar(referer_port, "$.int")),
+      referer_fqdn = json_extract_scalar(referer_fqdn, "$.string"),
+      referer_url_path = json_extract_scalar(referer_url_path, "$.string"),
+      user_agent = json_extract_scalar(user_agent, "$.string"),
+      xff = json_extract_scalar(xff, "$.string"),
+      gp_host_id = json_extract_scalar(gp_host_id, "$.string");
+
+[RULE:common_post_processing]
+fields - __firewall_type,           // internal, generated by xql-engine
+         action_flags,              // internal, not shown by EXPLORE app
+         dg_hier_level_1, dg_hier_level_2, dg_hier_level_3, dg_hier_level_4,    // internal, not shown by EXPLORE app
+         source_user_info,          // broken to: *_domain, *_name, *_uuid
+         time_generated;            // replaced with _time
+
+[RULE:threat_traffic_url_common_post_processing]
+fields - dest_user_info,            // broken to: *_domain, *_name, *_uuid
+         outbound_if_details, inbound_if_details,    // broken to: *_unit, *_type, *_slot, *_port
+         characteristics_of_app,    // internal, not shown by EXPLORE app
+         flags;                     // internal, not shown by EXPLORE app
+
+[RULE:extract_common_auth_userid_fields]
+alter authenticated_user_info_domain = json_extract_scalar(authenticated_user_info, "$.user_info.domain.string"),
+      authenticated_user_info_name = json_extract_scalar(authenticated_user_info, "$.user_info.name.string"),
+      authenticated_user_info_uuid = json_extract_scalar(authenticated_user_info, "$.user_info.uuid")
+| fields - authenticated_user_info;
+
+[RULE:extract_system_only_fields]
+alter event_component_id = to_integer(json_extract_scalar(event_component_id, "$.int")),
+      event_component = json_extract_scalar(event_component, "$.string");
+
+[RULE:extract_system_config_common_fields]
+alter event_name = json_extract_scalar(event_name, "$.enumeration.value.string"),
+      vendor_severity = json_extract_scalar(vendor_severity, "$.enumeration.value.string"),
+      event_description = json_extract_scalar(event_description, "$.string"),
+      severity = coalesce(json_extract_scalar(severity, "$.severity"), json_extract_scalar(severity, "$['firewall.severity']")),
+      device_group = device_group -> enumeration.value.string,
+      template = template -> enumeration.value.string;
+
+
+[RULE:extract_userid_only_fields]
+alter mapping_timeout = to_integer(json_extract_scalar(mapping_timeout, "$.int")),
+      auth_factor_num = to_integer(json_extract_scalar(auth_factor_num, "$.int")),
+      user_group_found = json_extract_scalar(user_group_found, "$.boolean"),
+      mapping_data_source = json_extract_scalar(mapping_data_source, "$.enumeration.value.string"),
+      event_id = json_extract_scalar(event_id, "$.string"),
+      ug_flags = to_integer(json_extract_scalar(ug_flags, "$.long")),
+      is_duplicate_user = to_boolean(json_extract_scalar(is_duplicate_user, "$.boolean")),
+      user_identified_by_source_as = json_extract_scalar(user_identified_by_source_as, "$.string"),
+      user = json_extract_scalar(user, "$.string"),
+      mapping_data_source_name = json_extract_scalar(mapping_data_source_name, "$.string"),
+      auth_completion_time = json_extract_scalar(auth_completion_time, "$.string"),
+      mapping_data_source_type = json_extract_scalar(mapping_data_source_type, "$.enumeration.value.string");
+
+[RULE:extract_auth_only_fields]
+alter log_set = json_extract_scalar(log_set, "$.string"),
+     auth_factor_num = to_integer(json_extract_scalar(auth_factor_num, "$.int")),
+     auth_proto = to_integer(json_extract_scalar(auth_proto, "$.int")),
+     mfa_auth_id = to_integer(json_extract_scalar(mfa_auth_id, "$.long")),
+     auth_server_profile = json_extract_scalar(auth_server_profile, "$.string"),
+     auth_description = json_extract_scalar(auth_description, "$.string"),
+     rule_matched_uuid = json_extract_scalar(rule_matched_uuid, "$.string"),
+     normalize_user = json_extract_scalar(normalize_user, "$.string"),
+     auth_policy = json_extract_scalar(auth_policy, "$.string"),
+     user = json_extract_scalar(user, "$.string"),
+     object = json_extract_scalar(object, "$.string"),
+     client_type = to_integer(json_extract_scalar(client_type, "$.int")),
+     auth_event_name = json_extract_scalar(auth_event_name, "$.enumeration.value.string");
+
+[RULE:extract_filedata_only_fields]
+alter threat_category = json_extract_scalar(threat_category, "$.enumeration.value.string"),
+      threat_name_firewall = json_extract_scalar(threat_name_firewall, "$.string"),
+      direction_of_attack = json_extract_scalar(direction_of_attack, "$.enumeration.value.string"),
+      url_category = json_extract_scalar(url_category, "$.enumeration.value.string"),
+      file_name = json_extract_scalar(file_name, "$.string"),
+      file_type = json_extract_scalar(file_type, "$.string"),
+      content_version = json_extract_scalar(content_version, "$.string"),
+      cloud_hostname = json_extract_scalar(cloud_hostname, "$.string"),
+      file_url = json_extract_scalar(file_url, "$.string"),
+      sig_flags = to_integer(json_extract_scalar(sig_flags, "$.int")),
+      pcap_id = to_integer(json_extract_scalar(pcap_id, "$.long")),
+      file_id = to_integer(json_extract_scalar(file_id, "$.long")),
+      flags = to_integer(json_extract_scalar(flags, "$.long")),
+      report_id = to_integer(json_extract_scalar(report_id, "$.long")),
+      vendor_severity = json_extract_scalar(vendor_severity, "$.value.string"),
+      severity = coalesce(json_extract_scalar(severity, "$.severity"), json_extract_scalar(severity, "$['firewall.severity']")),
+      file_sha_256 = json_extract_scalar(file_sha_256, "$.string");
+
+[RULE:extract_globalprotect_only_fields]
+alter connection_error = json_extract_scalar(connection_error, "$.enumeration.value.string"),
+      event_id = json_extract_scalar(event_id, "$.enumeration.value.string"),
+      status = json_extract_scalar(status, "$.enumeration.value.string"),
+      endpoint_gp_version = to_integer(json_extract_scalar(endpoint_gp_version, "$.int")),
+      ssl_response_time = to_integer(json_extract_scalar(ssl_response_time, "$.int")),
+      login_duration = to_integer(json_extract_scalar(login_duration, "$.long")),
+      endpoint_os_type = json_extract_scalar(endpoint_os_type, "$.string"),
+      endpoint_os_version = json_extract_scalar(endpoint_os_version, "$.string"),
+      endpoint_device_name = json_extract_scalar(endpoint_device_name, "$.string"),
+      opaque = json_extract_scalar(opaque, "$.string"),
+      portal = json_extract_scalar(portal, "$.string"),
+      source_region = json_extract_scalar(source_region, "$.string"),
+      stage = json_extract_scalar(stage, "$.string"),
+      host_id = json_extract_scalar(host_id, "$.string"),
+      auth_method = json_extract_scalar(auth_method, "$.string"),
+      gateway = json_extract_scalar(gateway, "$.string"),
+      connect_method = json_extract_scalar(connect_method, "$.string"),
+      private_ip = if(json_extract_scalar(private_ip, "$.ip_address.value") != "",
+                        json_extract_scalar(private_ip, "$.ip_address.value"),
+                        json_extract_scalar(private_ip, "$.ip_address.hex")),
+      public_ip = if(json_extract_scalar(public_ip, "$.ip_address.value") != "",
+                        json_extract_scalar(public_ip, "$.ip_address.value"),
+                        json_extract_scalar(public_ip, "$.ip_address.hex")),
+      private_ipv6 = if(json_extract_scalar(private_ipv6, "$.ip_address.value") != "",
+                        json_extract_scalar(private_ipv6, "$.ip_address.value"),
+                        json_extract_scalar(private_ipv6, "$.ip_address.hex")),
+      public_ipv6 = if(json_extract_scalar(public_ipv6, "$.ip_address.value") != "",
+                        json_extract_scalar(public_ipv6, "$.ip_address.value"),
+                        json_extract_scalar(public_ipv6, "$.ip_address.hex"));
+
+[RULE:extract_tunnel_only_fields]
+alter access_point_name = json_extract_scalar(access_point_name, "$.string"),
+      mobile_ip = if(json_extract_scalar(mobile_ip, "$.ip_address.value") != "",
+                        json_extract_scalar(mobile_ip, "$.ip_address.value"),
+                        json_extract_scalar(mobile_ip, "$.ip_address.hex")),
+      mobile_subscriber_isdn = json_extract_scalar(mobile_subscriber_isdn, "$.string"),
+      mobile_country_code = to_integer(json_extract_scalar(mobile_country_code, "$.int")),
+      mobile_network_code = to_integer(json_extract_scalar(mobile_network_code, "$.int")),
+      mobile_base_station_code = to_integer(json_extract_scalar(mobile_base_station_code, "$.int")),
+      mobile_area_code = to_integer(json_extract_scalar(mobile_area_code, "$.int")),
+      tunnel_event_code = to_integer(json_extract_scalar(tunnel_event_code, "$.int")),
+      tunnel_event_type = to_integer(json_extract_scalar(tunnel_event_type, "$.int")),
+      tunnel_message_type = to_integer(json_extract_scalar(tunnel_message_type, "$.int")),
+      tunnel_sessions_created = to_integer(json_extract_scalar(tunnel_sessions_created, "$.int")),
+      tunnel_sessions_closed = to_integer(json_extract_scalar(tunnel_sessions_closed, "$.int")),
+      tunnel_cause_code = to_integer(json_extract_scalar(tunnel_cause_code, "$.int")),
+      tunnel_endpoint_id_1 = to_integer(json_extract_scalar(tunnel_endpoint_id_1, "$.int")),
+      tunnel_endpoint_id_2 = to_integer(json_extract_scalar(tunnel_endpoint_id_2, "$.int")),
+      packets_dropped_ukn_proto = to_integer(json_extract_scalar(packets_dropped_ukn_proto, "$.int")),
+      packets_dropped_max_encap = to_integer(json_extract_scalar(packets_dropped_max_encap, "$.int")),
+      packets_dropped_strict_check = to_integer(json_extract_scalar(packets_dropped_strict_check, "$.int")),
+      packets_dropped_tunnel_frag = to_integer(json_extract_scalar(packets_dropped_tunnel_frag, "$.int")),
+      radio_access_technology = to_integer(json_extract_scalar(radio_access_technology, "$.int")),
+      tunnel_interface = to_integer(json_extract_scalar(tunnel_interface, "$.int")),
+      tunnel_inspection_rule = json_extract_scalar(tunnel_inspection_rule, "$.string"),
+      tunnel_remote_user_ip = if(json_extract_scalar(tunnel_remote_user_ip, "$.ip_address.value") != "",
+                        json_extract_scalar(tunnel_remote_user_ip, "$.ip_address.value"),
+                        json_extract_scalar(tunnel_remote_user_ip, "$.ip_address.hex")),
+      tunnel_remote_imsi_id = to_integer(json_extract_scalar(tunnel_interface, "$.long")),
+      standard_ports_of_app = json_extract_scalar(standard_ports_of_app, "$.string"),
+      pdu_session_id = to_integer(json_extract_scalar(pdu_session_id, "$.int")); 
+
+[RULE:extract_config_only_fields]
+alter admin_user = admin_user -> string, 
+      admin_user_info_domain = admin_user_info -> user_info.domain.string,
+      admin_user_info_name = admin_user_info -> user_info.name.string,
+      admin_user_info_uuid = to_integer(admin_user_info -> user_info.uuid.long),
+      client = client -> enumeration.value.string,
+      event_client_ip = if(event_client_ip -> ip_address.value != "", 
+                  event_client_ip -> ip_address.value, 
+                  event_client_ip -> ip_address.hex),
+      event_detail = event_detail -> string, 
+      event_path = event_path -> string, 
+      event_result = event_result -> enumeration.value.string, 
+      log_source_group_id = log_source_group_id -> string,
+      platform_type = platform_type -> string;
+
+
+/* -------------------------------
+   ---------- INGESTS ------------
+   ------------------------------- */
+
+[INGEST:vendor=panw, product=ngfw, target_dataset=panw_ngfw_hipmatch_raw, no_hit=drop, ingestnull=false]
+filter __firewall_type = "firewall.hipmatch"
+| alter _time = time_generated
+| call extract_common_ngfw_fields
+| call extract_hipmatch_only_fields
+| call common_post_processing;
+
+[INGEST:vendor=panw, product=ngfw, target_dataset=panw_ngfw_threat_raw, no_hit=drop, ingestnull=false]
+filter __firewall_type = "firewall.threat"
+| alter _time = time_generated
+| call extract_common_ngfw_fields
+| call extract_common_threat_traffic_url_filedata_fields
+| call extract_threat_url_common_fields
+| call extract_threat_only_fields
+| call common_post_processing
+| call threat_traffic_url_common_post_processing;
+
+[INGEST:vendor=panw, product=ngfw, target_dataset=panw_ngfw_traffic_raw, no_hit=drop, ingestnull=false]
+filter __firewall_type = "firewall.traffic"
+| call extract_common_ngfw_fields
+| call extract_common_threat_traffic_url_filedata_fields
+| call extract_traffic_only_fields
+| alter _time = time_generated
+| call common_post_processing
+| call threat_traffic_url_common_post_processing;
+
+[INGEST:vendor=panw, product=ngfw, target_dataset=panw_ngfw_url_raw, no_hit=drop, ingestnull=false]
+filter __firewall_type = "firewall.url"
+| alter _time = time_generated
+| call extract_common_ngfw_fields
+| call extract_common_threat_traffic_url_filedata_fields
+| call extract_threat_url_common_fields
+| call extract_url_only_fields
+| call common_post_processing
+| call threat_traffic_url_common_post_processing
+| fields - threat_name_firewall, domain_edl, partial_hash;  // not shown by EXPLORE app
+
+[INGEST:vendor=panw, product=ngfw, target_dataset=panw_ngfw_filedata_raw, no_hit=drop, ingestnull=false]
+filter __firewall_type = "firewall.file_data"
+| alter _time = time_generated
+| call extract_common_ngfw_fields
+| call extract_filedata_only_fields
+| call extract_common_threat_traffic_url_filedata_fields
+| call threat_traffic_url_common_post_processing
+| call common_post_processing;
+
+
+[INGEST:vendor=panw, product=ngfw, target_dataset=panw_ngfw_globalprotect_raw, no_hit=drop, ingestnull=false]
+filter __firewall_type = "firewall.globalprotect"
+| alter _time = time_generated
+| call extract_common_ngfw_fields
+| call extract_globalprotect_only_fields
+| call common_post_processing;
+
+

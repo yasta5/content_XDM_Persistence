@@ -101,43 +101,43 @@ alter
 [RULE: mapping_sender_field_for_mta_events]
 alter
         extract_header_from = metaData -> header.from
-|alter 
+| alter
         extract_from = arrayindex(regextract(extract_header_from ,"<(\S*)>"), 0)
-|alter
+| alter
         xdm.email.sender = coalesce(extract_from, sender);
 
 
 [MODEL: dataset=retarus_secure_email_gateway_raw]
 filter type = "CxO"
-|call retarus_secure_email_gw_common_fields
-|call mapping_sender_field;
+| call retarus_secure_email_gw_common_fields
+| call mapping_sender_field;
 
 
 filter type = "PZD"
-|call retarus_secure_email_gw_common_fields
-|call pzd_fields
-|call mapping_sender_field;
+| call retarus_secure_email_gw_common_fields
+| call pzd_fields
+| call mapping_sender_field;
 
 
 filter type = "Sandboxing"
-|call retarus_secure_email_gw_common_fields
-|call sandboxing_fields
-|call mapping_sender_field;
+| call retarus_secure_email_gw_common_fields
+| call sandboxing_fields
+| call mapping_sender_field;
 
 
 filter type = "MultiScan"
-|call retarus_secure_email_gw_common_fields
-|call multiscan_fields
-|call mapping_sender_field;
+| call retarus_secure_email_gw_common_fields
+| call multiscan_fields
+| call mapping_sender_field;
 
 
 filter type = "MTA" and direction ="INBOUND"
-|call retarus_secure_email_gw_common_fields
-|call mta_inbound_fields
-|call mapping_sender_field_for_mta_events;
+| call retarus_secure_email_gw_common_fields
+| call mta_inbound_fields
+| call mapping_sender_field_for_mta_events;
 
 
 filter type = "MTA" and direction ="OUTBOUND"
-|call retarus_secure_email_gw_common_fields
-|call mta_outbound_fields
-|call mapping_sender_field_for_mta_events;
+| call retarus_secure_email_gw_common_fields
+| call mta_outbound_fields
+| call mapping_sender_field_for_mta_events;
