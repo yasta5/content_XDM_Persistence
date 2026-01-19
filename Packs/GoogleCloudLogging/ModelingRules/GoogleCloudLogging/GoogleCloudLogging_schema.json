@@ -35,6 +35,14 @@
     "textPayload": {
       "type": "string",
       "is_array": false
+    },
+    "timestamp": {
+      "type": "datetime",
+      "is_array": false
+    },
+    "receiveTimestamp": {
+      "type": "datetime",
+      "is_array": false
     }
   },
   "google_dns_raw": {
@@ -72,6 +80,14 @@
     },
     "textPayload": {
       "type": "string",
+      "is_array": false
+    },
+    "timestamp": {
+      "type": "datetime",
+      "is_array": false
+    },
+    "receiveTimestamp": {
+      "type": "datetime",
       "is_array": false
     }
   }
