@@ -1,7 +1,7 @@
 {
   "microsoft_windows_raw": {
     "event_data": {
-      "type": "string",
+      "type": "nested_json",
       "is_array": false
     },
     "event_action": {
@@ -13,7 +13,7 @@
       "is_array": false
     },
     "user": {
-      "type": "string",
+      "type": "nested_json",
       "is_array": false
     },
     "host_name": {
@@ -97,20 +97,20 @@
       "is_array": false
     },
     "event_fwlink": {
-        "type": "string",
-        "is_array": false
-      },
+      "type": "string",
+      "is_array": false
+    },
     "detection_source": {
-        "type": "string",
-        "is_array": false
-      },
+      "type": "string",
+      "is_array": false
+    },
     "threat_category": {
-        "type": "string",
-        "is_array": false
-      },
+      "type": "string",
+      "is_array": false
+    },
     "provider_guid": {
       "type": "string",
       "is_array": false
-      }
+    }
   }
 }

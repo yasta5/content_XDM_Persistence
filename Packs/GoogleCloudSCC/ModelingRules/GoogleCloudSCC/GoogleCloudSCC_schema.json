@@ -1,13 +1,12 @@
-
 {
-    "google_scc_raw": {
-      "finding": {
-        "type": "string",
-        "is_array": false
-      },
-      "resource": {
-        "type": "string",
-        "is_array": false
-      }
+  "google_scc_raw": {
+    "finding": {
+      "type": "nested_json",
+      "is_array": false
+    },
+    "resource": {
+      "type": "nested_json",
+      "is_array": false
     }
   }
+}

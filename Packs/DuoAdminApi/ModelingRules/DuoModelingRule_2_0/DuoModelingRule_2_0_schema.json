@@ -1,11 +1,11 @@
 {
   "duo_duo_raw": {
     "access_device": {
-      "type": "string",
+      "type": "nested_json",
       "is_array": false
     },
     "application": {
-      "type": "string",
+      "type": "nested_json",
       "is_array": false
     },
     "eventtype": {
@@ -61,11 +61,11 @@
       "is_array": false
     },
     "user": {
-      "type": "string",
+      "type": "nested_json",
       "is_array": false
     },
     "auth_device": {
-      "type": "string",
+      "type": "nested_json",
       "is_array": false
     },
     "telephony_id": {
@@ -93,12 +93,12 @@
       "is_array": false
     },
     "adaptive_trust_assessments": {
-      "type": "string",
+      "type": "nested_json",
       "is_array": false
     },
     "alias": {
       "type": "string",
       "is_array": false
-    }                                        
+    }
   }
 }

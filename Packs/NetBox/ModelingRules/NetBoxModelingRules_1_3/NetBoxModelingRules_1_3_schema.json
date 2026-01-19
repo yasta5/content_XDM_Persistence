@@ -9,11 +9,11 @@
       "is_array": false
     },
     "kind": {
-      "type": "string",
+      "type": "nested_json",
       "is_array": false
     },
     "assigned_object": {
-      "type": "string",
+      "type": "nested_json",
       "is_array": false
     },
     "assigned_object_type": {
