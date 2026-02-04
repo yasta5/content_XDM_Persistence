@@ -18,7 +18,7 @@ filter _raw_log ~= "<\d+>[\S\s]+\s+\d+\.\d+.\d+\.\d+\s+\S+[\s\[]\d+[\]\:\s\-]+\[
     get_http_method = arraystring(regextract(extract_httpm_url, "^(\S+)\s+\S+"), ""),
     get_url = arraystring(regextract(extract_httpm_url, "^\S+\s+(\S+)"), ""),
     combine_contenttyoe_cookie_referer = arraystring(arraycreate(extract_contenttype_header, extract_cookie_header, extract_referer_header), " | "),
-    duration_int_convert = to_integer(multiply(to_float(extract_duration), 1000)) 
+    duration_int_convert = to_integer(multiply(to_float(extract_duration), 1000))
 | alter
     xdm.event.duration = duration_int_convert,
     xdm.source.ipv4 = src_ip_v4,
@@ -42,7 +42,7 @@ filter _raw_log not contains "|" AND _raw_log not contains "=" AND _raw_log !~= 
     extract_intermidiate_node = arraystring(regextract(_raw_log, "<\d+>[\S\s]+\s+\d+\.\d+.\d+\.\d+\s+\S+[\s\[]\d+[\]\:\s\-]+\[[^\]]+\]\s+[^\s]+\s+[^\s]+\s+[^\s]+\s+([^\s]+)\s+[^\s]+\s+[^\s]+\s+[^\s]+"), ""),
     extract_src_sent_bytes = to_integer(arraystring(regextract(_raw_log, "<\d+>[\S\s]+\s+\d+\.\d+.\d+\.\d+\s+\S+[\s\[]\d+[\]\:\s\-]+\[[^\]]+\]\s+[^\s]+\s+[^\s]+\s+[^\s]+\s+[^\s]+\s+([^\s]+)\s+[^\s]+\s+[^\s]+"), "")),
     extract_tar_sent_bytes = to_integer(arraystring(regextract(_raw_log, "<\d+>[\S\s]+\s+\d+\.\d+.\d+\.\d+\s+\S+[\s\[]\d+[\]\:\s\-]+\[[^\]]+\]\s+[^\s]+\s+[^\s]+\s+[^\s]+\s+[^\s]+\s+[^\s]+\s+([^\s]+)\s+[^\s]+"), "")),
-    extract_duration = arraystring(regextract(_raw_log, "<\d+>[\S\s]+\s+\d+\.\d+.\d+\.\d+\s+\S+[\s\[]\d+[\]\:\s\-]+\[[^\]]+\]\s+[^\s]+\s+[^\s]+\s+[^\s]+\s+[^\s]+\s+[^\s]+\s+[^\s]+\s+([^\s]+)"), ""),
+    extract_duration = to_float(arraystring(regextract(_raw_log, "<\d+>[\S\s]+\s+\d+\.\d+.\d+\.\d+\s+\S+[\s\[]\d+[\]\:\s\-]+\[[^\]]+\]\s+[^\s]+\s+[^\s]+\s+[^\s]+\s+[^\s]+\s+[^\s]+\s+[^\s]+\s+([^\s]+)"), "")),
     extract_agentapp_name = arraystring(regextract(_raw_log, "<\d+>[\S\s]+\s+\d+\.\d+.\d+\.\d+\s+(\S+)[\s\[]\d+[\]\:\s\-]+"), "")
 | alter
     get_tar_port = to_integer(arraystring(regextract(extract_tar_ip_port, "^\S+\:(\S+)"), "")),
