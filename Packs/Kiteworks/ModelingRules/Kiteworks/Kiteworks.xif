@@ -4,14 +4,14 @@
 /*************************/
 filter _raw_log ~= "^(?:\S+\s+){5}\{" 
 | alter // extract syslog message parts 
-    syslog_priority = to_integer(arrayindex(regextract(_raw_log, "^\<(\d{1,3})\>\s*\w+"), 0)),
+    syslog_priority_1 = to_integer(arrayindex(regextract(_raw_log, "^\<(\d{1,3})\>\s*\w+"), 0)),
     syslog_hostname = arrayindex(regextract(_raw_log, "(?:\S+\s+){3}(\S+)"), 0),
     syslog_process_id = arrayindex(regextract(_raw_log, "^(?:\S+\s+){4}[\w\-\.\:]+\[(\d+)"), 0),
     syslog_process_name = rtrim(arrayindex(regextract(_raw_log, "(?:\S+\s+){4}(\S+)"), 0), ":"),
     json_payload = arrayindex(regextract(_raw_log, "(?:\S+\s+){5}(\{.+)"), 0)
 | alter json_data = json_payload -> data{}
-| alter syslog_facility = floor(divide(syslog_priority, 8))
-| alter syslog_severity = to_string(subtract(syslog_priority, multiply(syslog_facility, 8)))
+| alter syslog_facility = floor(divide(syslog_priority_1, 8))
+| alter syslog_severity = to_string(subtract(syslog_priority_1, multiply(syslog_facility, 8)))
 | alter // extract json payload fields 
     agent_id = to_string(json_payload -> agent.id),
     agent_name = json_payload -> agent.name,
@@ -167,13 +167,13 @@ filter _raw_log ~= "^(?:\S+\s+){5}\{"
 /*********************************/
 filter _raw_log !~= "^(?:\S+\s+){5}\{" and _raw_log not contains "Activity Type:"
 | alter  // extract syslog message parts 
-    syslog_priority = to_integer(arrayindex(regextract(_raw_log, "^\<(\d{1,3})\>\s*\w+"), 0)),
+    syslog_priority_2 = to_integer(arrayindex(regextract(_raw_log, "^\<(\d{1,3})\>\s*\w+"), 0)),
     syslog_hostname = arrayindex(regextract(_raw_log, "(?:\S+\s+){3}(\S+)"), 0),
     syslog_process_id = arrayindex(regextract(_raw_log, "^(?:\S+\s+){4}[\w\-\.\:]+\[(\d+)"), 0),
     syslog_process_name = rtrim(arrayindex(regextract(_raw_log, "(?:\S+\s+){4}([\w\-\.\:]+)"), 0), ":"),
     syslog_payload = arrayindex(regextract(_raw_log, "(?:\S+\s+){5}(.+)"), 0)
-| alter syslog_facility = floor(divide(syslog_priority, 8))
-| alter syslog_severity = to_string(subtract(syslog_priority, multiply(syslog_facility, 8)))
+| alter syslog_facility = floor(divide(syslog_priority_2, 8))
+| alter syslog_severity = to_string(subtract(syslog_priority_2, multiply(syslog_facility, 8)))
 | alter // extract fields 
     activity_type = arrayindex(regextract(syslog_payload, "type=(\S+)"), 0),
     audit_uid = arrayindex(regextract(syslog_payload, "auid=(\d+)"), 0),
@@ -264,12 +264,12 @@ filter _raw_log !~= "^(?:\S+\s+){5}\{" and _raw_log not contains "Activity Type:
 /******************************************/
 filter _raw_log !~= "^(?:\S+\s+){5}\{" and _raw_log contains "Activity Type:"
 | alter  // extract syslog message parts 
-    syslog_priority = to_integer(arrayindex(regextract(_raw_log, "^\<(\d{1,3})\>\s*\w+"), 0)),
+    syslog_priority_3 = to_integer(arrayindex(regextract(_raw_log, "^\<(\d{1,3})\>\s*\w+"), 0)),
     syslog_hostname = arrayindex(regextract(_raw_log, "(?:\S+\s+){3}(\S+)"), 0),
     syslog_process_name = rtrim(arrayindex(regextract(_raw_log, "(?:\S+\s+){4}([\w\-\.\:]+)"), 0), ":"),
     syslog_payload = arrayindex(regextract(_raw_log, "(?:\S+\s+){5}(.+)"), 0)
-| alter syslog_facility = floor(divide(syslog_priority, 8))
-| alter syslog_severity = to_string(subtract(syslog_priority, multiply(syslog_facility, 8)))
+| alter syslog_facility = floor(divide(syslog_priority_3, 8))
+| alter syslog_severity = to_string(subtract(syslog_priority_3, multiply(syslog_facility, 8)))
 | alter // extract fields 
     activity_type = arrayindex(regextract(syslog_payload, "Activity Type:\s*([^,]+)"), 0),
     activity_group = arrayindex(regextract(syslog_payload, "Activity Group:\s*([^,]+)"), 0),
