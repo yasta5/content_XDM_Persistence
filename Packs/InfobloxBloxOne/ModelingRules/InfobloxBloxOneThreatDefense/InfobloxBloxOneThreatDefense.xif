@@ -2,9 +2,9 @@
 alter 
 xdm.source.ipv4 = if(qip ~= "(\d{1,3}\.){3}\d{1,3}", qip),
 xdm.target.ipv4 = if(rip ~= "(\d{1,3}\.){3}\d{1,3}", rip),
-xdm.source.host.ipv4_addresses = arraymap(split(private_ip, ","), if("@element" ~= "(\d{1,3}\.){3}\d{1,3}", "@element")) |
+xdm.source.host.ipv4_addresses = arraymap(split(private_ip, ","), if("@element" ~= "(\d{1,3}\.){3}\d{1,3}", "@element"))
 
-alter
+| alter
 xdm.source.ipv6 = if(xdm.source.ipv4 = null and qip ~= "([a-fA-F0-9]{1,4}\:){7}[a-fA-F0-9]{1,4}", qip),
 xdm.target.ipv6 = if(xdm.target.ipv4 = null and rip ~= "([a-fA-F0-9]{1,4}\:){7}[a-fA-F0-9]{1,4}", rip),
 xdm.source.host.ipv6_addresses = if(array_length(xdm.source.host.ipv4_addresses) = 0, arraymap(split(private_ip, ","), if("@element" ~= "([a-fA-F0-9]{1,4}\:){7}[a-fA-F0-9]{1,4}", "@element"))),
