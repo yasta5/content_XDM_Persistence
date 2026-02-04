@@ -1,5 +1,6 @@
 [MODEL: dataset=orca_security_raw]
-filter cloud_provider = "gcp"
+alter mitre_category = json_extract_scalar(data, "$.mitre_category")
+| filter cloud_provider = "gcp"
 | alter xdm.alert.description = details,
     xdm.alert.name = json_extract_scalar(data, "$.title"),
     xdm.source.user.username = account_name,
@@ -7,8 +8,7 @@ filter cloud_provider = "gcp"
     xdm.target.cloud.provider = cloud_provider,
     xdm.alert.subcategory = category,
     xdm.source.user.user_type = if(cloud_account_type = "Regular", XDM_CONST.USER_TYPE_REGULAR, to_string(cloud_account_type)),
-    xdm.event.type = type_string,
-    mitre_category = json_extract_scalar(data, "$.mitre_category")
+    xdm.event.type = type_string
 | alter xdm.alert.mitre_tactics = arraycreate(if(mitre_category="initial access", XDM_CONST.MITRE_TACTIC_INITIAL_ACCESS
     ,mitre_category="execution",XDM_CONST.MITRE_TACTIC_EXECUTION
     ,mitre_category="persistence",XDM_CONST.MITRE_TACTIC_PERSISTENCE
@@ -67,7 +67,8 @@ filter cloud_provider = "gcp"
 | alter xdm.target.resource.id = coalesce(id_1, id_2, id_3, id_4, id_5, id_6, id_7, id_8),
     xdm.target.cloud.zone = coalesce(json_extract_scalar(model, "$.data.GcpGkeCluster.zone"), json_extract_scalar(model, "$.data.GcpVmSnapshot.Zone"));
 
-filter cloud_provider = "aws"
+alter mitre_category = json_extract_scalar(data, "$.mitre_category")
+| filter cloud_provider = "aws"
 | alter xdm.alert.description = details,
     xdm.alert.name = json_extract_scalar(data, "$.title"),
     xdm.source.user.username = account_name,
@@ -76,8 +77,7 @@ filter cloud_provider = "aws"
     xdm.target.cloud.provider = cloud_provider,
     xdm.alert.subcategory = category,
     xdm.source.user.user_type = if(cloud_account_type = "Regular", XDM_CONST.USER_TYPE_REGULAR, to_string(cloud_account_type)),
-    xdm.event.type = type_string,
-    mitre_category = json_extract_scalar(data, "$.mitre_category")
+    xdm.event.type = type_string
 | alter xdm.alert.mitre_tactics = arraycreate(if(mitre_category="initial access", XDM_CONST.MITRE_TACTIC_INITIAL_ACCESS
     ,mitre_category="execution",XDM_CONST.MITRE_TACTIC_EXECUTION
     ,mitre_category="persistence",XDM_CONST.MITRE_TACTIC_PERSISTENCE
@@ -175,7 +175,8 @@ filter cloud_provider = "aws"
 | alter xdm.target.user.identifier = coalesce(identifier_1, identifier_2, identifier_3),
     xdm.target.user.username = coalesce(json_extract_scalar(model, "$.data.AwsRdsDbInstanceSnapshot.MasterUsername"), json_extract_scalar(model, "$.data.AwsRdsDbClusterSnapshot.MasterUsername"));
 
-filter cloud_provider = "azure"
+alter mitre_category = json_extract_scalar(data, "$.mitre_category")
+| filter cloud_provider = "azure"
 | alter xdm.alert.description = details,
     xdm.alert.name = json_extract_scalar(data, "$.title"),
     xdm.source.user.username = account_name,
@@ -184,8 +185,7 @@ filter cloud_provider = "azure"
     xdm.target.cloud.provider = cloud_provider,
     xdm.alert.subcategory = category,
     xdm.source.user.user_type = if(cloud_account_type = "Regular", XDM_CONST.USER_TYPE_REGULAR, to_string(cloud_account_type)),
-    xdm.event.type = type_string,
-    mitre_category = json_extract_scalar(data, "$.mitre_category")
+    xdm.event.type = type_string
 | alter xdm.alert.mitre_tactics = arraycreate(if(mitre_category="initial access", XDM_CONST.MITRE_TACTIC_INITIAL_ACCESS
     ,mitre_category="execution",XDM_CONST.MITRE_TACTIC_EXECUTION
     ,mitre_category="persistence",XDM_CONST.MITRE_TACTIC_PERSISTENCE
