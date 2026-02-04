@@ -3,14 +3,14 @@
 // Audit Log Events - https://developer.code42.com/api/#tag/Audit-Log //
 //--------------------------------------------------------------------//
 filter eventType = "audit"
-| alter // pre-mapping extractions & formatting 
+| alter
      actor_domain = arrayindex(regextract(actorName, "@(\S+)"), 0),
      audit_event_type = arrayindex(regextract(type_, "audit_log::(\w+)"), 0), 
      actor_ipv4_addresses = regextract(actorIpAddress, "((?:\d{1,3}\.){3}\d{1,3})"),
      actor_ipv6_addresses = coalesce(
         arrayindex(regextract(actorIpAddress, "((?:[a-fA-F\d]{0,4}\:){2,6}\:?(?:\d{1,3}\.){3}\d{1,3})"), 0), // dual notation (ipv6 + ipv4)
         arrayindex(regextract(actorIpAddress, "((?:[a-fA-F\d]{0,4}\:){2,7}[a-fA-F\d]{0,4})"), 0)) // normal pure ipv6 format
-| alter // XDM Mapping
+| alter
      xdm.event.operation_sub_type = type,
      xdm.event.original_event_type = audit_event_type,
      xdm.event.outcome = if(to_boolean(success), XDM_CONST.OUTCOME_SUCCESS),
@@ -116,7 +116,7 @@ filter eventType = "file"
      target_private_ipv6_addresses = arrayfilter(destination_private_ip, "@element" ~= "(?:[a-fA-F\d]{0,4}\:){1,7}[a-fA-F\d]{0,4}\:?"),
      outcome_reason = arraystring(arraycreate(responseControls_userJustification_reason, responseControls_userJustification_text), ". ")
 
-| alter // XDM Mappings
+| alter
      xdm.alert.risks = risk_indicators,
      xdm.alert.severity = risk_severity,
      xdm.email.recipients = destination_email_recipients,

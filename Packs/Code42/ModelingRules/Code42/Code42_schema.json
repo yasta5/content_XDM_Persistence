@@ -21,7 +21,7 @@
             "is_array": false
         },
         "destination": {
-            "type": "string",
+            "type": "nested_json",
             "is_array": false
         },
         "event": {
@@ -33,7 +33,7 @@
             "is_array": false
         },
         "file": {
-            "type": "string",
+            "type": "nested_json",
             "is_array": false
         },
         "process": {
@@ -65,6 +65,86 @@
             "is_array": false
         },
         "user": {
+            "type": "string",
+            "is_array": false
+        },
+        "source_ip": {
+            "type": "string",
+            "is_array": false
+        },
+        "event_id": {
+            "type": "string",
+            "is_array": false
+        },
+        "event_action": {
+            "type": "string",
+            "is_array": false
+        },
+        "event_vector": {
+            "type": "string",
+            "is_array": false
+        },
+        "event_detectorDisplayName": {
+            "type": "string",
+            "is_array": false
+        },
+        "event_observer": {
+            "type": "string",
+            "is_array": false
+        },
+        "source_category": {
+            "type": "string",
+            "is_array": false
+        },
+        "destination_os_upper": {
+            "type": "string",
+            "is_array": false
+        },
+        "file_extension": {
+            "type": "string",
+            "is_array": false
+        },
+        "original_file_extension": {
+            "type": "string",
+            "is_array": false
+        },
+        "source_public_ipv4": {
+            "type": "string",
+            "is_array": false
+        },
+        "source_public_ipv6": {
+            "type": "string",
+            "is_array": false
+        },
+        "source_private_ipv4_addresses": {
+            "type": "string",
+            "is_array": false
+        },
+        "source_private_ipv6_addresses": {
+            "type": "string",
+            "is_array": false
+        },
+        "target_public_ipv4": {
+            "type": "string",
+            "is_array": false
+        },
+        "target_public_ipv6": {
+            "type": "string",
+            "is_array": false
+        },
+        "target_private_ipv4_addresses": {
+            "type": "string",
+            "is_array": false
+        },
+        "target_private_ipv6_addresses": {
+            "type": "string",
+            "is_array": false
+        },
+        "outcome_reason": {
+            "type": "string",
+            "is_array": false
+        },
+        "source_os_upper": {
             "type": "string",
             "is_array": false
         }
