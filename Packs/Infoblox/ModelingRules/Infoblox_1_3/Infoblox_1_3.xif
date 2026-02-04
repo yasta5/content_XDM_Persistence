@@ -8,12 +8,12 @@ filter _raw_log ~= "client\s+(?:\@0x[\da-fA-F]+\s+)?[\da-fA-F\.\:]+\#\d{1,5}(?:\
 | alter
     syslog_process_id = arrayindex(regextract(_raw_log, "\s\w+\[(\d+)\]"), 0),
     syslog_process_name = arrayindex(regextract(_raw_log, "\s(\w+)\[\d+\]"), 0),
-    syslog_priority = to_integer(arrayindex(regextract(_raw_log, "^\<(\d{1,3})\>\s*\w+"), 0)),
+    syslog_priority_1 = to_integer(arrayindex(regextract(_raw_log, "^\<(\d{1,3})\>\s*\w+"), 0)),
     syslog_msg = coalesce( 
         arrayindex(regextract(_raw_log, "\w+\[\d+\]:\s*(.+)"), 0), // messages that are sent directly from infoblox 
         arrayindex(regextract(_raw_log, "^\<\d+\>\w?\s+(?:\S+\s+){6}(.+)"), 0)) // messages that are downloaded to file and sent via an intermediate syslog client 
-| alter syslog_facility_code = floor(divide(syslog_priority, 8))
-| alter syslog_severity = to_string(subtract(syslog_priority, multiply(syslog_facility_code, 8)))
+| alter syslog_facility_code = floor(divide(syslog_priority_1, 8))
+| alter syslog_severity = to_string(subtract(syslog_priority_1, multiply(syslog_facility_code, 8)))
 | alter // Extract the DNS query data out of the syslog messages 
     client_ip = arrayindex(regextract(_raw_log, "client\s+(?:\@0x[\da-fA-F]+\s+)?([\da-fA-F\.\:]+)\#\d{1,5}"), 0),
     client_port = arrayindex(regextract(_raw_log, "client\s+(?:\@0x[\da-fA-F]+\s+)?[\da-fA-F\.\:]+\#(\d{1,5})"), 0),
@@ -62,12 +62,12 @@ filter _raw_log ~= "(?:UDP|TCP):\s*query:\s*(?:\S+\s+){3}response:"
 | alter
     syslog_process_id = arrayindex(regextract(_raw_log, "\s\w+\[(\d+)\]"), 0),
     syslog_process_name = arrayindex(regextract(_raw_log, "\s(\w+)\[\d+\]"), 0),
-    syslog_priority = to_integer(arrayindex(regextract(_raw_log, "^\<(\d{1,3})\>\s*\w+"), 0)),
+    syslog_priority_2 = to_integer(arrayindex(regextract(_raw_log, "^\<(\d{1,3})\>\s*\w+"), 0)),
     syslog_msg = coalesce( 
         arrayindex(regextract(_raw_log, "\w+\[\d+\]:\s*(.+)"), 0), // messages that are sent directly from infoblox 
         arrayindex(regextract(_raw_log, "^\<\d+\>\w?\s+(?:\S+\s+){6}(.+)"), 0)) // messages that are downloaded to file and sent via an intermediate syslog client 
-| alter syslog_facility_code = floor(divide(syslog_priority, 8))
-| alter syslog_severity = to_string(subtract(syslog_priority, multiply(syslog_facility_code, 8)))
+| alter syslog_facility_code = floor(divide(syslog_priority_2, 8))
+| alter syslog_severity = to_string(subtract(syslog_priority_2, multiply(syslog_facility_code, 8)))
 | alter // Extract DNS query & response data 
     client_ip = arrayindex(regextract(syslog_msg, "client\s+([\da-fA-F\.\:]+)\#\d{1,5}"), 0),
     client_port = arrayindex(regextract(syslog_msg, "client\s+[\da-fA-F\.\:]+\#(\d{1,5})"), 0),
@@ -84,14 +84,14 @@ filter _raw_log ~= "(?:UDP|TCP):\s*query:\s*(?:\S+\s+){3}response:"
 | alter // Isolate only the requested records types from the entire response 
     response_requested_records = if(query_record_type = "ANY", response_rr, arrayfilter(response_rr,  arrayindex(regextract("@element", "(?:\S+\s+){3}(\S+)"), 0) = query_record_type))
 | alter // Extract the domain names and their associated record values from the response  
-    response_domain_names = arraymap(response_requested_records, rtrim(arrayindex(regextract("@element", "(\S+)"), 0), ".")),
-    response_values = arraymap(response_requested_records, arrayindex(regextract("@element", "(?:\S+\s+){4}(.+)"), 0))
+    response_domain_names_1 = arraymap(response_requested_records, rtrim(arrayindex(regextract("@element", "(\S+)"), 0), ".")),
+    response_values_1 = arraymap(response_requested_records, arrayindex(regextract("@element", "(?:\S+\s+){4}(.+)"), 0))
 | alter // reformat the domain names & values from array to semicolon separated strings
-    response_distinct_domain_names = arraydistinct(response_domain_names),
-    response_distinct_values = arraydistinct(response_values)
+    response_distinct_domain_names = arraydistinct(response_domain_names_1),
+    response_distinct_values = arraydistinct(response_values_1)
 | alter 
-    response_domain_names = if(array_length(response_distinct_domain_names) = 1, arraystring(response_distinct_domain_names, ";"), arraystring(response_domain_names, ";")),
-    response_values = if(array_length(response_distinct_values) = 1, arraystring(response_distinct_values, ";"), arraystring(response_values, ";"))
+    response_domain_names = if(array_length(response_distinct_domain_names) = 1, arraystring(response_distinct_domain_names, ";"), arraystring(response_domain_names_1, ";")),
+    response_values = if(array_length(response_distinct_values) = 1, arraystring(response_distinct_values, ";"), arraystring(response_values_1, ";"))
 | alter // additional processing 
     application_protocol = "DNS",
 	client_ipv4 = if(client_ip ~= "(?:\d{1,3}\.){3}\d{1,3}", client_ip),
@@ -137,14 +137,14 @@ filter _raw_log ~= "(?:dhcpd|omshell|dhcrelay|dhclient)\[\d+\]" or (_raw_log ~= 
 | alter
     syslog_process_id = arrayindex(regextract(_raw_log, "\s\w+\[(\d+)\]"), 0),
     syslog_process_name = arrayindex(regextract(_raw_log, "\s(\w+)\[\d+\]"), 0),
-    syslog_priority = to_integer(arrayindex(regextract(_raw_log, "^\<(\d{1,3})\>\s*\w+"), 0)),
+    syslog_priority_3 = to_integer(arrayindex(regextract(_raw_log, "^\<(\d{1,3})\>\s*\w+"), 0)),
     // messages that are sent directly from infoblox
     // messages that are downloaded to a file and sent via an intermediate syslog client
     syslog_msg = coalesce( 
         arrayindex(regextract(_raw_log, "\w+\[\d+\]:\s*(.+)"), 0),
         arrayindex(regextract(_raw_log, "^\<\d+\>\w?\s+(?:\S+\s+){6}(.+)"), 0))
-| alter syslog_facility_code = floor(divide(syslog_priority, 8))
-| alter syslog_severity = to_string(subtract(syslog_priority, multiply(syslog_facility_code, 8)))
+| alter syslog_facility_code = floor(divide(syslog_priority_3, 8))
+| alter syslog_severity = to_string(subtract(syslog_priority_3, multiply(syslog_facility_code, 8)))
 // Extract the DHCP message type (https://www.iana.org/assignments/bootp-dhcp-parameters/bootp-dhcp-parameters.xhtml#message-type-53)
 | alter
     dhcp_msg_type = arrayindex(regextract(syslog_msg, "(DHCP\w+)") , 0)
@@ -218,12 +218,12 @@ filter _raw_log ~= "httpd(?:\[\d+\])?:"
 | alter
     syslog_process_id = arrayindex(regextract(_raw_log, "\s\w+\[(\d+)\]"), 0),
     syslog_process_name = arrayindex(regextract(_raw_log, "\s(\w+)\[\d+\]"), 0),
-    syslog_priority = to_integer(arrayindex(regextract(_raw_log, "^\<(\d{1,3})\>\s*\w+"), 0)),
+    syslog_priority_4 = to_integer(arrayindex(regextract(_raw_log, "^\<(\d{1,3})\>\s*\w+"), 0)),
     syslog_msg = coalesce( 
         arrayindex(regextract(_raw_log, "\w+\[\d+\]:\s*(.+)"), 0), // messages that are sent directly from infoblox 
         arrayindex(regextract(_raw_log, "^\<\d+\>\w?\s+(?:\S+\s+){6}(.+)"), 0)) // messages that are downloaded to a file and sent via an intermediate syslog client 
-| alter syslog_facility_code = floor(divide(syslog_priority, 8))
-| alter syslog_severity = to_string(subtract(syslog_priority, multiply(syslog_facility_code, 8)))
+| alter syslog_facility_code = floor(divide(syslog_priority_4, 8))
+| alter syslog_severity = to_string(subtract(syslog_priority_4, multiply(syslog_facility_code, 8)))
 // Extract audit data from the syslog message
 | alter
     auth_methods = arrayindex(regextract(_raw_log, "auth=(.*?)\s"), 0),
@@ -260,12 +260,12 @@ filter
 | alter
     syslog_process_id = arrayindex(regextract(_raw_log, "\s\w+\[(\d+)\]"), 0),
     syslog_process_name = arrayindex(regextract(_raw_log, "\s(\w+)\[\d+\]"), 0),
-    syslog_priority = to_integer(arrayindex(regextract(_raw_log, "^\<(\d{1,3})\>\s*\w+"), 0)),
+    syslog_priority_5 = to_integer(arrayindex(regextract(_raw_log, "^\<(\d{1,3})\>\s*\w+"), 0)),
     syslog_msg = coalesce( 
         arrayindex(regextract(_raw_log, "\w+\[\d+\]:\s*(.+)"), 0), // messages that are sent directly from infoblox 
         arrayindex(regextract(_raw_log, "^\<\d+\>\w?\s+(?:\S+\s+){6}(.+)"), 0)) // messages that are downloaded to a file and sent via an intermediate syslog client 
-| alter syslog_facility_code = floor(divide(syslog_priority, 8))
-| alter syslog_severity = to_string(subtract(syslog_priority, multiply(syslog_facility_code, 8)))
+| alter syslog_facility_code = floor(divide(syslog_priority_5, 8))
+| alter syslog_severity = to_string(subtract(syslog_priority_5, multiply(syslog_facility_code, 8)))
 // Extract additional fields from the syslog message
 | alter
     dns_event_type = if(_raw_log ~= "named\[\d+\]" or _raw_log ~= "(?:client|config|database|dnssec|general|lame_servers|network|notify|query|queries|query[_\-]rewrite|resolver|responses|rpz|security|update|update_security|xfer[_\-]in|xfer[_\-]out):", "DNS"),
