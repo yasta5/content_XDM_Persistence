@@ -191,12 +191,12 @@ alter event_type = arrayindex(regextract(_raw_log, "\d{10}\.\d+\s+\S+\s+(\S+)"),
                                arrayindex(regextract(event_description, "no offers for mac\s+((?:[\da-fA-F]{2}:){5}\w+)"), 0)),
     src_ip = coalesce(arrayindex(regextract(event_description, "src=((?:\d{1,3}\.){3}\d{1,3})"), 0), 
                       arrayindex(regextract(event_description, "Client=\'?((?:\d{1,3}\.){3}\d{1,3})"), 0), 
-                      arrayindex(regextract(event_description, "peer_contact=\'?((?:\d{1,3}\.){3}\d{1,3})"), 0), // vpn peer
-                      arrayindex(regextract(event_description, "for mac \S+ host = ((?:\d{1,3}\.){3}\d{1,3})"), 0), // dhcp no offers
-                      arrayindex(regextract(event_description, "request for\s+((?:\d{1,3}\.){3}\d{1,3})"), 0), // IPsec-SA request 
-                      arrayindex(regextract(event_description, "\s+((?:\d{1,3}\.){3}\d{1,3})\[\d+\]"), 0)),  // IPsec session 
-    src_port = coalesce(arrayindex(regextract(event_description, "\s+(?:\d{1,3}\.){3}\d{1,3}\[(\d+)\]"), 0), // IPsec session 
-                        arrayindex(regextract(event_description, "peer_contact=\'?(?:\d{1,3}\.){3}\d{1,3}:(\d{1,5})"), 0)), // vpn peer
+                      arrayindex(regextract(event_description, "peer_contact=\'?((?:\d{1,3}\.){3}\d{1,3})"), 0),
+                      arrayindex(regextract(event_description, "for mac \S+ host = ((?:\d{1,3}\.){3}\d{1,3})"), 0),
+                      arrayindex(regextract(event_description, "request for\s+((?:\d{1,3}\.){3}\d{1,3})"), 0),
+                      arrayindex(regextract(event_description, "\s+((?:\d{1,3}\.){3}\d{1,3})\[\d+\]"), 0)),
+    src_port = coalesce(arrayindex(regextract(event_description, "\s+(?:\d{1,3}\.){3}\d{1,3}\[(\d+)\]"), 0),
+                        arrayindex(regextract(event_description, "peer_contact=\'?(?:\d{1,3}\.){3}\d{1,3}:(\d{1,5})"), 0)),
     subnet = arrayindex(regextract(event_description, "subnet\s+(\d+\S+)"), 0),
     sent_packets = to_integer(arrayindex(regextract(event_description, "sent\s+(\d+)\s+\w*\s*packets"), 0)),
     isakmp_spi = arrayindex(regextract(event_description,"spi[\:=](\S+)"), 0), // security parameter index 
