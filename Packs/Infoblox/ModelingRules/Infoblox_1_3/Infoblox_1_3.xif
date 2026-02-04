@@ -4,7 +4,8 @@
 /**************/
 // https://docs.infoblox.com/space/nios85/35816694/Capturing+DNS+Queries+and+Responses
 filter _raw_log ~= "client\s+(?:\@0x[\da-fA-F]+\s+)?[\da-fA-F\.\:]+\#\d{1,5}(?:\s+\([^\)]+\))?:\s+query"
-| alter // Extract syslog headers & syslog message 
+// Extract syslog headers & syslog message
+| alter
     syslog_process_id = arrayindex(regextract(_raw_log, "\s\w+\[(\d+)\]"), 0),
     syslog_process_name = arrayindex(regextract(_raw_log, "\s(\w+)\[\d+\]"), 0),
     syslog_priority = to_integer(arrayindex(regextract(_raw_log, "^\<(\d{1,3})\>\s*\w+"), 0)),
@@ -56,8 +57,9 @@ filter _raw_log ~= "client\s+(?:\@0x[\da-fA-F]+\s+)?[\da-fA-F\.\:]+\#\d{1,5}(?:\
 // DNS Responses /
 /****************/
 // https://docs.infoblox.com/space/nios85/35816694/Capturing+DNS+Queries+and+Responses
-filter _raw_log ~= "(?:UDP|TCP):\s*query:\s*(?:\S+\s+){3}response:"   
-| alter // Extract syslog headers & syslog message 
+filter _raw_log ~= "(?:UDP|TCP):\s*query:\s*(?:\S+\s+){3}response:"
+// Extract syslog headers & syslog message
+| alter
     syslog_process_id = arrayindex(regextract(_raw_log, "\s\w+\[(\d+)\]"), 0),
     syslog_process_name = arrayindex(regextract(_raw_log, "\s(\w+)\[\d+\]"), 0),
     syslog_priority = to_integer(arrayindex(regextract(_raw_log, "^\<(\d{1,3})\>\s*\w+"), 0)),
@@ -131,18 +133,23 @@ filter _raw_log ~= "(?:UDP|TCP):\s*query:\s*(?:\S+\s+){3}response:"
 // DHCP Events /
 /*************/
 filter _raw_log ~= "(?:dhcpd|omshell|dhcrelay|dhclient)\[\d+\]" or (_raw_log ~= "DHCP\w+" and _raw_log !~= "(?:UDP|TCP):\s*query:\s*(?:\S+\s+){3}response:")
-| alter // Extract syslog headers & syslog message 
+// Extract syslog headers & syslog message
+| alter
     syslog_process_id = arrayindex(regextract(_raw_log, "\s\w+\[(\d+)\]"), 0),
     syslog_process_name = arrayindex(regextract(_raw_log, "\s(\w+)\[\d+\]"), 0),
     syslog_priority = to_integer(arrayindex(regextract(_raw_log, "^\<(\d{1,3})\>\s*\w+"), 0)),
+    // messages that are sent directly from infoblox
+    // messages that are downloaded to a file and sent via an intermediate syslog client
     syslog_msg = coalesce( 
-        arrayindex(regextract(_raw_log, "\w+\[\d+\]:\s*(.+)"), 0), // messages that are sent directly from infoblox 
-        arrayindex(regextract(_raw_log, "^\<\d+\>\w?\s+(?:\S+\s+){6}(.+)"), 0)) // messages that are downloaded to a file and sent via an intermediate syslog client 
+        arrayindex(regextract(_raw_log, "\w+\[\d+\]:\s*(.+)"), 0),
+        arrayindex(regextract(_raw_log, "^\<\d+\>\w?\s+(?:\S+\s+){6}(.+)"), 0))
 | alter syslog_facility_code = floor(divide(syslog_priority, 8))
 | alter syslog_severity = to_string(subtract(syslog_priority, multiply(syslog_facility_code, 8)))
-| alter // Extract the DHCP message type (https://www.iana.org/assignments/bootp-dhcp-parameters/bootp-dhcp-parameters.xhtml#message-type-53)
+// Extract the DHCP message type (https://www.iana.org/assignments/bootp-dhcp-parameters/bootp-dhcp-parameters.xhtml#message-type-53)
+| alter
     dhcp_msg_type = arrayindex(regextract(syslog_msg, "(DHCP\w+)") , 0)
-| alter // Extract DHCP data  
+// Extract DHCP data
+| alter
     application_protocol = "DHCP", 
     dhcp_acknowledged_ip = arrayindex(regextract(_raw_log, "DHCPACK\s+(?:on|to)\s+((?:\d{1,3}\.){3}\d{1,3})"), 0),
     dhcp_not_acknowledged_ip = arrayindex(regextract(_raw_log, "DHCPNAK\s+on\s+((?:\d{1,3}\.){3}\d{1,3})"), 0),
@@ -173,7 +180,7 @@ filter _raw_log ~= "(?:dhcpd|omshell|dhcrelay|dhclient)\[\d+\]" or (_raw_log ~= 
         if(dhcp_msg_type = "DHCPREQUEST", arrayindex(regextract(_raw_log, "\(([^\)]+)\)$"), 0))),
     target_network = arrayindex(regextract(_raw_log, "network\s+((?:\d{1,3}\.){3}\d{1,3}\/\d+)"), 0), 
     transaction_id = arrayindex(regextract(_raw_log, "TransID\s+(\w+)"), 0)
-| alter // XDM mapping 
+| alter
     xdm.alert.severity = syslog_severity,
     xdm.event.description = syslog_msg,
     xdm.event.log_level = if(syslog_severity = "0", XDM_CONST.LOG_LEVEL_EMERGENCY, syslog_severity = "1", XDM_CONST.LOG_LEVEL_ALERT, syslog_severity = "2", XDM_CONST.LOG_LEVEL_CRITICAL, syslog_severity = "3", XDM_CONST.LOG_LEVEL_ERROR, syslog_severity = "4", XDM_CONST.LOG_LEVEL_WARNING, syslog_severity = "5", XDM_CONST.LOG_LEVEL_NOTICE, syslog_severity = "6", XDM_CONST.LOG_LEVEL_INFORMATIONAL, syslog_severity = "7", XDM_CONST.LOG_LEVEL_DEBUG, syslog_severity),
@@ -207,7 +214,8 @@ filter _raw_log ~= "(?:dhcpd|omshell|dhcrelay|dhclient)\[\d+\]" or (_raw_log ~= 
 // Audit Events /
 /***************/
 filter _raw_log ~= "httpd(?:\[\d+\])?:"
-| alter // Extract syslog headers & syslog message 
+// Extract syslog headers & syslog message
+| alter
     syslog_process_id = arrayindex(regextract(_raw_log, "\s\w+\[(\d+)\]"), 0),
     syslog_process_name = arrayindex(regextract(_raw_log, "\s(\w+)\[\d+\]"), 0),
     syslog_priority = to_integer(arrayindex(regextract(_raw_log, "^\<(\d{1,3})\>\s*\w+"), 0)),
@@ -216,14 +224,15 @@ filter _raw_log ~= "httpd(?:\[\d+\])?:"
         arrayindex(regextract(_raw_log, "^\<\d+\>\w?\s+(?:\S+\s+){6}(.+)"), 0)) // messages that are downloaded to a file and sent via an intermediate syslog client 
 | alter syslog_facility_code = floor(divide(syslog_priority, 8))
 | alter syslog_severity = to_string(subtract(syslog_priority, multiply(syslog_facility_code, 8)))
-| alter // Extract audit data from the syslog message 
+// Extract audit data from the syslog message
+| alter
     auth_methods = arrayindex(regextract(_raw_log, "auth=(.*?)\s"), 0),
     client_ipv4 = arrayindex(regextract(_raw_log, "ip=(.*?)\s"), 0),
     client_user_groups = arrayindex(regextract(_raw_log, "group=(.*?)\s"), 0),
     client_user_username = arrayindex(regextract(_raw_log, "\s\[(.*?)\]\:"), 0),
     original_event_type = arrayindex(regextract(_raw_log, ":\s.*?:\s(.*?)\s-\s-"), 0),
     server_process_name = arrayindex(regextract(_raw_log, "to=(.*?)\s"), 0)
-| alter // XDM mapping
+| alter
     xdm.alert.severity = syslog_severity,
     xdm.auth.auth_method = auth_methods,
     xdm.event.description = syslog_msg,
@@ -241,12 +250,14 @@ filter _raw_log ~= "httpd(?:\[\d+\])?:"
 // Fallback Mapping Events /
 /**************************/
 // General implicit fallback mapping for all other Infoblox events
-filter // Exclude event types which are already mapped 
+// Exclude event types which are already mapped
+filter
     _raw_log !~= "httpd\[\d+\]" // NOT Audit 
     and _raw_log !~= "client\s+(?:\@0x[\da-fA-F]+\s+)?[\da-fA-F\.\:]+\#\d{1,5}(?:\s+\([^\)]+\))?:\s+query" // NOT DNS Query
     and _raw_log !~= "(?:UDP|TCP):\s*query:\s*(?:\S+\s+){3}response:" // NOT DNS Response
     and _raw_log !~= "(?:dhcpd|omshell|dhcrelay|dhclient)\[\d+\]" and _raw_log ~= "DHCP\w+" // NOT DHCP
-| alter // Extract syslog headers & syslog message 
+// Extract syslog headers & syslog message
+| alter
     syslog_process_id = arrayindex(regextract(_raw_log, "\s\w+\[(\d+)\]"), 0),
     syslog_process_name = arrayindex(regextract(_raw_log, "\s(\w+)\[\d+\]"), 0),
     syslog_priority = to_integer(arrayindex(regextract(_raw_log, "^\<(\d{1,3})\>\s*\w+"), 0)),
@@ -255,13 +266,14 @@ filter // Exclude event types which are already mapped
         arrayindex(regextract(_raw_log, "^\<\d+\>\w?\s+(?:\S+\s+){6}(.+)"), 0)) // messages that are downloaded to a file and sent via an intermediate syslog client 
 | alter syslog_facility_code = floor(divide(syslog_priority, 8))
 | alter syslog_severity = to_string(subtract(syslog_priority, multiply(syslog_facility_code, 8)))
-| alter // Extract additional fields from the syslog message 
+// Extract additional fields from the syslog message
+| alter
     dns_event_type = if(_raw_log ~= "named\[\d+\]" or _raw_log ~= "(?:client|config|database|dnssec|general|lame_servers|network|notify|query|queries|query[_\-]rewrite|resolver|responses|rpz|security|update|update_security|xfer[_\-]in|xfer[_\-]out):", "DNS"),
     dns_event_subtype = arrayindex(regextract(_raw_log, "((?:client|config|database|dnssec|general|lame_servers|network|notify|query|queries|query[_\-]rewrite|resolver|responses|rpz|security|update|update_security|xfer[_\-]in|xfer[_\-]out)):"), 0),
     dnz_respone_policy_zone = coalesce(arrayindex(regextract(_raw_log, "rpz:\s+([\w\-\.]+)\:"), 0), arrayindex(regextract(_raw_log, "policy zone\s+\'([^']+)\'"), 0)), 
     resolved_domain = arrayindex(regextract(_raw_log, "resolving \'([\w\.\-]+)"), 0)
 | alter event_type = if(dns_event_type != null and dns_event_subtype != null, concat(dns_event_type, " ", dns_event_subtype))
-| alter // XDM Mapping
+| alter
     xdm.alert.severity = syslog_severity,
     xdm.event.description = syslog_msg,
     xdm.event.log_level = if(syslog_severity = "0", XDM_CONST.LOG_LEVEL_EMERGENCY, syslog_severity = "1", XDM_CONST.LOG_LEVEL_ALERT, syslog_severity = "2", XDM_CONST.LOG_LEVEL_CRITICAL, syslog_severity = "3", XDM_CONST.LOG_LEVEL_ERROR, syslog_severity = "4", XDM_CONST.LOG_LEVEL_WARNING, syslog_severity = "5", XDM_CONST.LOG_LEVEL_NOTICE, syslog_severity = "6", XDM_CONST.LOG_LEVEL_INFORMATIONAL, syslog_severity = "7", XDM_CONST.LOG_LEVEL_DEBUG, syslog_severity),
